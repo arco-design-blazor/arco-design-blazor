@@ -1,8 +1,81 @@
 ﻿@namespace ArcoDesign.Components
 
+@inherits ButtonBase
 
-<h3>Button</h3>
+@if (!string.IsNullOrEmpty(Href))
+{
+    <a style="@styleBuilder.Build()"
+   class="@classNameBuilder.Build()"
+    @onclick="HandClick">
+        @if (Loading)
+        {
+            <IconLoading />
+        }
+        else
+        {
+            @Icon
+        }
+        @ChildContent
+    </a>
+}
+else
+{
+    <button style="@styleBuilder.Build()"
+        class="@classNameBuilder.Build()"
+        type="@HtmlType"
+        disabled="@Disabled"
+        @onclick="HandClick">
+        @if (Loading)
+        {
+            <IconLoading />
+        }
+        else
+        {
+            @Icon
+        }
+        @ChildContent
+    </button>
+}
+
 
 @code {
+    private readonly string prefixCls = "arco-button";
+    [Parameter]
+    public ButtonHtmlType HtmlType { get; set; } = ButtonHtmlType.Button;
 
+    protected override void OnInitialized()
+    {
+        var type = Type == ButtonType.Default ? "secondary" : $"{Type.ToString().ToLower()}";
+        classNameBuilder.
+            Add(ClassName).
+            Add(prefixCls)
+            .Add($"{prefixCls}-{type}")
+            .Add($"{prefixCls}-size-{Size.ToString().ToLower()}")
+            .Add($"{prefixCls}-shape-{Shape.ToString().ToLower()}")
+            .AddIf(Long, $"{prefixCls}-long")
+            .Add($"{prefixCls}-status-{Status.ToString().ToLower()}")
+            .AddIf(LoadingFixedWidth, $"{prefixCls}-loading-fixed-width")
+            .AddIf(this.Loading, $"{prefixCls}-loading")
+            .AddIf(!string.IsNullOrEmpty(this.Href), $"{prefixCls}-link")
+            .AddIf(IconOnly || ChildContent != null, $"{prefixCls}-icon-only")
+            .AddIf(Disabled, $"{prefixCls}-disabled");
+
+        base.OnInitialized();
+    }
+
+    private void HandClick()
+    {
+        
+    }
+
+
+
+    public enum ButtonHtmlType
+    {
+        Button = 0,
+        Reset,
+        Submit,
+    }
 }
+
+

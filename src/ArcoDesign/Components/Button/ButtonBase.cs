@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Components;
+﻿using ArcoDesign.Infra;
+using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
 
 namespace ArcoDesign.Components;
@@ -15,30 +16,34 @@ public abstract class ButtonBase : BlazorComponentBase {
     public ButtonShape Shape { get; set; }
 
     [Parameter]
-    public string? Herf { get; set; }
+    public string Href { get; set; } = string.Empty;
 
     [Parameter]
-    public string? Target { get; set; }
+    public string Target { get; set; } = string.Empty;
 
     [Parameter]
     public bool Disabled { get; set; } = false;
 
     [Parameter]
-    public bool? Loading { get; set; }
+    public bool Loading { get; set; } = false;
     [Parameter]
-    public bool? LoadingFixedWidth { get; set; }
+    public bool LoadingFixedWidth { get; set; } = false;
 
     [Parameter]
-    public bool? IconOnly { get; set; }
+    public bool IconOnly { get; set; } = false;
+    public RenderFragment? Icon { get; set; }
 
     [Parameter]
-    public bool? Long { get; set; }
+    public bool Long { get; set; } = false;
 
     [Parameter]
     public EventCallback<MouseEventArgs>? OnClick { get; set; }
 
     [Parameter]
-    public RenderFragment ChildContent { get; set; }
+    public RenderFragment? ChildContent { get; set; }
+
+    [Parameter]
+    public Size Size { get; set; } = Size.Default;
 }
 
 public enum ButtonType {
