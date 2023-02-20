@@ -1,3 +1,18 @@
-﻿<div class="my-component">
+﻿@using ArcoDesign.Infra.JsRuntimes;
+
+@inherits ArcoDesignComponentBase
+
+<div class="my-component">
     This component is defined in the <strong>ArcoDesign</strong> library.
 </div>
+<button @onclick="BtnClick">click me!</button>
+
+@code {
+    private async Task BtnClick()
+    {
+        //await using var scope = Js.CreateScope("./_content/ArcoDesign/exampleJsInterop.js");
+        //await scope.InvokeVoidAsync("showPrompt", "你好");
+        await using var scope = Js.CreateScope("./_content/ArcoDesign/exampleJsInterop.js");
+        await scope.InvokeVoidAsync("showPrompt", "你好");
+    }
+}

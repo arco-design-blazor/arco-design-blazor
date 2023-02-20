@@ -1,4 +1,7 @@
-﻿using System;
+﻿using ArcoDesign.Infra.JsRuntimes;
+using Microsoft.AspNetCore.Components;
+using Microsoft.JSInterop;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,5 +13,9 @@ namespace ArcoDesign;
 /// arco 组件基类
 /// </summary>
 public abstract class ArcoDesignComponentBase : BlazorComponentBase {
+    
+    [Inject]
+    internal Js Js{ get; set; }
+
 
 }

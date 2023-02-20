@@ -1,10 +1,17 @@
 ﻿using ArcoDesign.Extensions;
 using ArcoDesign.Infra.CssBuilders;
+using ArcoDesign.Infra.JsRuntimes;
 using Microsoft.AspNetCore.Components;
 using System.Collections.Specialized;
 
 namespace ArcoDesign;
 public abstract class BlazorComponentBase : ComponentBase {
+
+    /// <summary>
+    /// js
+    /// </summary>
+    [Inject]
+    internal Js Js { get; set; }
 
     /// <summary>
     /// 组件 style 构建器
