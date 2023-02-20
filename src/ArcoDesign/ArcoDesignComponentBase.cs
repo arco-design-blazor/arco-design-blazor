@@ -13,9 +13,5 @@ namespace ArcoDesign;
 /// arco 组件基类
 /// </summary>
 public abstract class ArcoDesignComponentBase : BlazorComponentBase {
-    
-    [Inject]
-    internal Js Js{ get; set; }
-
 
 }

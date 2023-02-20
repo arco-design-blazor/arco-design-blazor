@@ -9,7 +9,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ArcoDesign.Doc.Server", "sr
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ArcoDesign.Doc.WebAssembly", "src\ArcoDesign.Doc.WebAssembly\ArcoDesign.Doc.WebAssembly.csproj", "{62895FFE-145E-4B1E-99C6-F29B7530A6B5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ArcoDesign", "src\ArcoDesign\ArcoDesign.csproj", "{5016DC3D-273A-4576-9F1A-3EDAF5EC850C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ArcoDesign", "src\ArcoDesign\ArcoDesign.csproj", "{5016DC3D-273A-4576-9F1A-3EDAF5EC850C}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ArcoDesign.IconGenerator", "src\ArcoDesign.IconGenerator\ArcoDesign.IconGenerator.csproj", "{D94B3E7F-4EE8-4628-BF5B-CF1C5A584133}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{5016DC3D-273A-4576-9F1A-3EDAF5EC850C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5016DC3D-273A-4576-9F1A-3EDAF5EC850C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5016DC3D-273A-4576-9F1A-3EDAF5EC850C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D94B3E7F-4EE8-4628-BF5B-CF1C5A584133}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D94B3E7F-4EE8-4628-BF5B-CF1C5A584133}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D94B3E7F-4EE8-4628-BF5B-CF1C5A584133}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D94B3E7F-4EE8-4628-BF5B-CF1C5A584133}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

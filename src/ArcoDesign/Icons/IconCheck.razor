@@ -1,0 +1,27 @@
+@namespace ArcoDesign.Components
+
+@inherits ArcoDesignComponentBase
+
+<svg  class="@classNameBuilder.Build()" width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="currentColor" stroke-width="4">
+<path d="M41.6776 11.0503L19.0502 33.6777L6.32227 20.9498" stroke-linecap="butt"></path>
+</svg>
+
+@code {
+    private readonly string prefixCls = "arco";
+
+    [Parameter]
+    public bool Spin { get; set; } = false;
+
+    public string DisplayName = "IconCheck";
+
+    protected override Task OnInitializedAsync()
+    {
+        classNameBuilder
+            .Add(ClassName)
+            .AddIf(!Spin, $"{prefixCls}-icon")
+            .AddIf(!Spin, $"{prefixCls}-icon-check")
+            .AddIf(Spin, $"{prefixCls}-icon-loading");
+
+        return base.OnInitializedAsync();
+    }
+}
