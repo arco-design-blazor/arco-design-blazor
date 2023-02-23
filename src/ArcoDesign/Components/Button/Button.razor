@@ -39,7 +39,7 @@ else
 
 
 @code {
-    private readonly string prefixCls = "arco-button";
+    private readonly string prefixCls = "arco-btn";
     [Parameter]
     public ButtonHtmlType HtmlType { get; set; } = ButtonHtmlType.Button;
 
@@ -50,10 +50,10 @@ else
             Add(ClassName).
             Add(prefixCls)
             .Add($"{prefixCls}-{type}")
-            .Add($"{prefixCls}-size-{Size.ToString().ToLower()}")
-            .Add($"{prefixCls}-shape-{Shape.ToString().ToLower()}")
+            .AddIf(Size != Size.Default, $"{prefixCls}-size-{Size.ToString().ToLower()}")
+            .AddIf(Shape != ButtonShape.None, $"{prefixCls}-shape-{Shape.ToString().ToLower()}")
             .AddIf(Long, $"{prefixCls}-long")
-            .Add($"{prefixCls}-status-{Status.ToString().ToLower()}")
+            .AddIf(Status != ButtonStatus.Default, $"{prefixCls}-status-{Status.ToString().ToLower()}")
             .AddIf(LoadingFixedWidth, $"{prefixCls}-loading-fixed-width")
             .AddIf(this.Loading, $"{prefixCls}-loading")
             .AddIf(!string.IsNullOrEmpty(this.Href), $"{prefixCls}-link")

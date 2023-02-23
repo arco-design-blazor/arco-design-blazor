@@ -10,10 +10,10 @@ public abstract class ButtonBase : BlazorComponentBase {
     public ButtonType Type { get; set; }
 
     [Parameter]
-    public ButtonStatus Status { get; set; }
+    public ButtonStatus Status { get; set; } = ButtonStatus.Default;
 
     [Parameter]
-    public ButtonShape Shape { get; set; }
+    public ButtonShape Shape { get; set; } = ButtonShape.None;
 
     [Parameter]
     public string Href { get; set; } = string.Empty;
