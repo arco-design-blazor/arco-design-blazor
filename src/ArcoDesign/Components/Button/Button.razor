@@ -1,4 +1,5 @@
 ﻿@namespace ArcoDesign.Components
+@using ArcoDesign.Extensions;
 
 @inherits ButtonBase
 
@@ -50,16 +51,17 @@ else
             Add(ClassName).
             Add(prefixCls)
             .Add($"{prefixCls}-{type}")
-            .AddIf(Size != Size.Default, $"{prefixCls}-size-{Size.ToString().ToLower()}")
+            .Add($"{prefixCls}-size-{Size.ToString().ToLower()}")
             .AddIf(Shape != ButtonShape.None, $"{prefixCls}-shape-{Shape.ToString().ToLower()}")
             .AddIf(Long, $"{prefixCls}-long")
             .AddIf(Status != ButtonStatus.Default, $"{prefixCls}-status-{Status.ToString().ToLower()}")
             .AddIf(LoadingFixedWidth, $"{prefixCls}-loading-fixed-width")
             .AddIf(this.Loading, $"{prefixCls}-loading")
             .AddIf(!string.IsNullOrEmpty(this.Href), $"{prefixCls}-link")
-            .AddIf(IconOnly || ChildContent != null, $"{prefixCls}-icon-only")
+            //.AddIf(IconOnly || ChildContent != null, $"{prefixCls}-icon-only")
             .AddIf(Disabled, $"{prefixCls}-disabled");
-
+        //ChildContent.IsString();
+        //ChildContent.IsComponent<ArcoDesignComponentBase>();
         base.OnInitialized();
     }
 

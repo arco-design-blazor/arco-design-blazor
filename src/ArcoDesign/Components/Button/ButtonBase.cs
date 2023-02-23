@@ -40,7 +40,7 @@ public abstract class ButtonBase : BlazorComponentBase {
     public EventCallback<MouseEventArgs>? OnClick { get; set; }
 
     [Parameter]
-    public RenderFragment? ChildContent { get; set; }
+    public RenderFragment ChildContent { get; set; }
 
     [Parameter]
     public Size Size { get; set; } = Size.Default;
