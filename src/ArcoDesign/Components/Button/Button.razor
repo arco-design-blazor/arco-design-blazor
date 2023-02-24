@@ -1,73 +1,110 @@
 ﻿@namespace ArcoDesign.Components
 @using ArcoDesign.Extensions;
+@using System.Text.RegularExpressions;
 
 @inherits ButtonBase
 
 @if (!string.IsNullOrEmpty(Href))
 {
-    <a style="@styleBuilder.Build()"
-   class="@classNameBuilder.Build()"
-    @onclick="HandClick">
-        @if (Loading)
-        {
-            <IconLoading />
-        }
-        else
-        {
-            @Icon
-        }
-        @ChildContent
+    <a 
+        style="@styleBuilder.Build()"
+        class="@classNameBuilder.Build()"
+        href="@Href.RenderIf(Disabled)"
+        @onclick="HandClick"
+        @onclick:preventDefault="shouldPreventDefault">
+        @InnerContent
     </a>
 }
 else
 {
-    <button style="@styleBuilder.Build()"
+    <button 
+        style="@styleBuilder.Build()"
         class="@classNameBuilder.Build()"
-        type="@HtmlType"
+        type="@HtmlType.ToEnumName()"
         disabled="@Disabled"
-        @onclick="HandClick">
-        @if (Loading)
-        {
-            <IconLoading />
-        }
-        else
-        {
-            @Icon
-        }
-        @ChildContent
+        @onclick="HandClick"
+        @onclick:preventDefault="shouldPreventDefault">
+        @InnerContent
     </button>
 }
 
 
 @code {
     private readonly string prefixCls = "arco-btn";
+    private bool isTowCNChar = false;
+    private static Regex regexTwoCNChar = new Regex("^[\u4e00-\u9fa5]{2}$");
+    private bool shouldPreventDefault = false;
+
     [Parameter]
     public ButtonHtmlType HtmlType { get; set; } = ButtonHtmlType.Button;
 
+    private RenderFragment IconNode
+    {
+        get
+        {
+            if (Loading)
+            {
+                return __builder =>
+                {
+                    <IconLoading />
+                };
+            }
+
+            return __builder =>
+            {
+                @Icon
+            };
+        }
+    }
+
+    private RenderFragment InnerContent
+    {
+        get
+        {
+            return __builder =>
+            {
+                @IconNode
+                @ChildContent
+            };
+        }
+    }
+
+
     protected override void OnInitialized()
     {
-        var type = Type == ButtonType.Default ? "secondary" : $"{Type.ToString().ToLower()}";
-        classNameBuilder.
-            Add(ClassName).
-            Add(prefixCls)
+        var type = Type == ButtonType.Default ? "secondary" : $"{Type.ToEnumName()}";
+
+        var text = ChildContent.GetText();
+        isTowCNChar = regexTwoCNChar.IsMatch(text);
+
+        classNameBuilder
+            .Add(prefixCls)
             .Add($"{prefixCls}-{type}")
-            .Add($"{prefixCls}-size-{Size.ToString().ToLower()}")
-            .AddIf(Shape != ButtonShape.None, $"{prefixCls}-shape-{Shape.ToString().ToLower()}")
+            .Add($"{prefixCls}-size-{Size.ToEnumName()}")
+            .AddIf(Shape != ButtonShape.None, $"{prefixCls}-shape-{Shape.ToEnumName()}")
             .AddIf(Long, $"{prefixCls}-long")
-            .AddIf(Status != ButtonStatus.Default, $"{prefixCls}-status-{Status.ToString().ToLower()}")
+            .AddIf(Status != ButtonStatus.Default, $"{prefixCls}-status-{Status.ToEnumName()}")
             .AddIf(LoadingFixedWidth, $"{prefixCls}-loading-fixed-width")
             .AddIf(this.Loading, $"{prefixCls}-loading")
             .AddIf(!string.IsNullOrEmpty(this.Href), $"{prefixCls}-link")
-            //.AddIf(IconOnly || ChildContent != null, $"{prefixCls}-icon-only")
-            .AddIf(Disabled, $"{prefixCls}-disabled");
-        //ChildContent.IsString();
-        //ChildContent.IsComponent<ArcoDesignComponentBase>();
+            .AddIf(IconOnly || (ChildContent.IsNullOrEmpty() && !IconNode.IsNullOrEmpty()), $"{prefixCls}-icon-only")
+            .AddIf(Disabled, $"{prefixCls}-disabled")
+            .AddIf(isTowCNChar, $"{prefixCls}-two-chinese-chars")
+            .AddIf(Rtl.HasValue && Rtl.Value, $"{prefixCls}-rtl")
+            .AddIf(string.IsNullOrWhiteSpace(ClassName), ClassName);
+
         base.OnInitialized();
     }
 
-    private void HandClick()
+    private async Task HandClick(MouseEventArgs args)
     {
-        
+        if (Loading)
+        {
+            shouldPreventDefault = true;
+            return;
+        }
+        if (OnClick.HasValue)
+            await OnClick.Value.InvokeAsync(args);
     }
 
 

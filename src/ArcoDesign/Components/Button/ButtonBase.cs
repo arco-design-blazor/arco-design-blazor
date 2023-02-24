@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Components.Web;
 
 namespace ArcoDesign.Components;
 
-public abstract class ButtonBase : BlazorComponentBase {
+public abstract class ButtonBase : ArcoDesignComponentBase {
 
     [Parameter]
     public ButtonType Type { get; set; }
@@ -31,6 +31,8 @@ public abstract class ButtonBase : BlazorComponentBase {
 
     [Parameter]
     public bool IconOnly { get; set; } = false;
+
+    [Parameter]
     public RenderFragment? Icon { get; set; }
 
     [Parameter]

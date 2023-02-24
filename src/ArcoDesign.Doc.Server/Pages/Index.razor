@@ -20,11 +20,21 @@
 </Button>*@
 
 <div>
-    <Button Type="ButtonType.Primary">Primary</Button>
+ @*   <Button Type="ButtonType.Primary">Primary</Button>
     <Button Type="ButtonType.Secondary">Secondary</Button>
     <Button Type="ButtonType.Dashed">Dashed</Button>
     <Button Type="ButtonType.Outline">Outline</Button>
+    <Button Type="ButtonType.Text">文本</Button>
     <Button Type="ButtonType.Text">文本了</Button>
+    <Button Type="ButtonType.Text"><span>文本了</span></Button>*@
+    <Button Type="ButtonType.Text">
+        <Icon>
+            <IconApps />
+        </Icon>
+        <ChildContent>
+            hello
+        </ChildContent>
+    </Button>
 </div>
 
 
