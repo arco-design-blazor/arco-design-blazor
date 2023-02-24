@@ -1,0 +1,191 @@
+﻿@page "/button"
+
+<h3>ButtonComponent</h3>
+
+<hr />
+<div>
+    <Button Type="ButtonType.Primary">Primary</Button>
+    <Button Type="ButtonType.Secondary">Secondary</Button>
+    <Button Type="ButtonType.Dashed">Dashed</Button>
+    <Button Type="ButtonType.Outline">Outline</Button>
+    <Button Type="ButtonType.Text">文本了</Button>
+</div>
+
+<hr />
+<div>
+    <Button Type="ButtonType.Primary">
+        <Icon>
+            <IconPlus />
+        </Icon>
+    </Button>
+
+    <Button Type="ButtonType.Primary">
+        <Icon>
+            <IconDelete />
+        </Icon>
+        <ChildContent>
+            Delete
+        </ChildContent>
+    </Button>
+</div>
+
+<hr />
+<div>
+    <Button Type="ButtonType.Primary">
+        <Icon>
+            <IconPlus />
+        </Icon>
+    </Button>
+
+    <Button Shape="ButtonShape.Circle" Type="ButtonType.Primary">
+        <Icon>
+            <IconPlus />
+        </Icon>
+    </Button>
+
+    <Button Shape="ButtonShape.Round" Type="ButtonType.Primary">
+        Primary
+    </Button>
+
+    <Button Shape="ButtonShape.Square" Type="ButtonType.Primary">
+        Primary
+    </Button>
+    <Button Type="ButtonType.Primary">
+        Primary
+    </Button>
+</div>
+
+<hr />
+<div>
+    <Button Type="ButtonType.Primary" Size="Infra.Size.Mini" >
+        Mini
+    </Button>
+    <Button Type="ButtonType.Primary" Size="Infra.Size.Small">
+        Small
+    </Button>
+    <Button Type="ButtonType.Primary" Size="Infra.Size.Default">
+        Default
+    </Button>
+    <Button Type="ButtonType.Primary" Size="Infra.Size.Large">
+        Large
+    </Button>
+</div>
+
+
+<hr />
+<div>
+    <div>
+        <Button Type="ButtonType.Primary" Status="ButtonStatus.Warning">
+            Warning
+        </Button>
+        <Button Status="ButtonStatus.Warning">
+            Warning
+        </Button>
+        <Button Type="ButtonType.Outline" Status="ButtonStatus.Warning">
+            Warning
+        </Button>
+        <Button Type="ButtonType.Text" Status="ButtonStatus.Warning">
+            Warning
+        </Button>
+    </div>
+    <div>
+        <Button Type="ButtonType.Primary" Status="ButtonStatus.Danger">
+            Danger
+        </Button>
+        <Button Status="ButtonStatus.Danger">
+            Danger
+        </Button>
+        <Button Type="ButtonType.Outline" Status="ButtonStatus.Danger">
+            Danger
+        </Button>
+        <Button Type="ButtonType.Text" Status="ButtonStatus.Danger">
+            Danger
+        </Button>
+    </div>
+    <div>
+        <Button Type="ButtonType.Primary" Status="ButtonStatus.Success">
+            Success
+        </Button>
+        <Button Status="ButtonStatus.Success">
+            Success
+        </Button>
+        <Button Type="ButtonType.Outline" Status="ButtonStatus.Success">
+            Success
+        </Button>
+        <Button Type="ButtonType.Text" Status="ButtonStatus.Success">
+            Success
+        </Button>
+    </div>
+</div>
+
+
+<hr />
+<div>
+    <div>
+        <Button Type="ButtonType.Primary" Disabled >
+            Warning
+        </Button>
+        <Button Disabled Type="ButtonType.Secondary">
+            Warning
+        </Button>
+        <Button Type="ButtonType.Outline" Disabled>
+            Warning
+        </Button>
+        <Button Type="ButtonType.Dashed" Disabled>
+            Warning
+        </Button>
+    </div>
+    <div>
+        <Button Type="ButtonType.Primary" Status="ButtonStatus.Warning" Disabled>
+            Warning
+        </Button>
+        <Button Type="ButtonType.Secondary"  Status="ButtonStatus.Warning" Disabled>
+            Warning
+        </Button>
+        <Button Type="ButtonType.Outline" Status="ButtonStatus.Warning" Disabled>
+            Warning
+        </Button>
+        <Button Type="ButtonType.Dashed" Status="ButtonStatus.Warning" Disabled>
+            Warning
+        </Button>
+    </div>
+    <div>
+        <Button Type="ButtonType.Primary" Status="ButtonStatus.Danger" Disabled>
+            Danger
+        </Button>
+        <Button Status="ButtonStatus.Danger" Type="ButtonType.Secondary" Disabled>
+            Danger
+        </Button>
+        <Button Type="ButtonType.Outline" Status="ButtonStatus.Danger" Disabled>
+            Danger
+        </Button>
+        <Button Type="ButtonType.Dashed" Status="ButtonStatus.Danger" Disabled>
+            Danger
+        </Button>
+    </div>
+    <div>
+        <Button Type="ButtonType.Primary" Status="ButtonStatus.Success" Disabled>
+            Success
+        </Button>
+        <Button Status="ButtonStatus.Success" Type="ButtonType.Secondary" Disabled>
+            Success
+        </Button>
+        <Button Type="ButtonType.Outline" Status="ButtonStatus.Success" Disabled>
+            Success
+        </Button>
+        <Button Type="ButtonType.Dashed" Status="ButtonStatus.Success" Disabled>
+            Success
+        </Button>
+    </div>
+</div>
+
+<hr />
+<div>
+    <Button Type='ButtonType.Primary' Loading>
+        Loading
+    </Button>
+</div>
+
+@code {
+
+}
