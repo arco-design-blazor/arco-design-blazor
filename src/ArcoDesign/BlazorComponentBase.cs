@@ -31,17 +31,29 @@ public abstract class BlazorComponentBase : ComponentBase {
     /// <summary>
     /// 组件挂载使用 class
     /// </summary>
-    protected string classNames => this.classNameBuilder.Build();
+    protected string classNames {
+        get {
+            return this.classNameBuilder.AddIf(ClassName.IsNotNullOrEmpty(), ClassName).Build();
+        }
+    }
 
     /// <summary>
     /// 组件挂载使用 style
     /// </summary>
-    protected string styles => this.styleBuilder.Build();
+    protected string styles {
+        get {
+            return this.styleBuilder.AddIfNotNullOrEmpty(Style).Build();
+        }
+    }
 
     /// <summary>
     /// 组件挂载使用 attrbutes
     /// </summary>
-    protected string attributes => this.AttributeBuilder.Build();
+    protected string attributes {
+        get {
+            return this.AttributeBuilder.Build();
+        }
+    }
 
     /// <summary>
     /// 外部传入组件 style

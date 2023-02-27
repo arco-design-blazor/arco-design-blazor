@@ -79,8 +79,7 @@ else
             .AddIf(LinkStatus != LinkStatus.Default, $"{prefixCls}-is-{LinkStatus.ToEnumName()}")
             .AddIf(IconNode.IsNullOrEmpty(), $"{prefixCls}-with-icon")
             .AddIf(!Hoverable, $"{prefixCls}-hoverless")
-            .AddIf(Rtl.HasValue && Rtl.Value, $"{prefixCls}-rlt")
-            .AddIf(ClassName.IsNotNullOrEmpty(), ClassName);
+            .AddIf(Rtl.HasValue && Rtl.Value, $"{prefixCls}-rlt");
 
         AttributeBuilder.Add("tabIndex", Disabled ? -1 : null);
 

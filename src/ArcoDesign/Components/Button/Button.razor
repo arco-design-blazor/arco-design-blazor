@@ -89,10 +89,7 @@ else
             .AddIf(IconOnly || (ChildContent.IsNullOrEmpty() && !IconNode.IsNullOrEmpty()), $"{prefixCls}-icon-only")
             .AddIf(Disabled, $"{prefixCls}-disabled")
             .AddIf(isTowCNChar, $"{prefixCls}-two-chinese-chars")
-            .AddIf(Rtl.HasValue && Rtl.Value, $"{prefixCls}-rtl")
-            .AddIf(string.IsNullOrWhiteSpace(ClassName), ClassName);
-
-        styleBuilder.AddIfNotNullOrEmpty(Style);
+            .AddIf(Rtl.HasValue && Rtl.Value, $"{prefixCls}-rtl");
 
         base.OnInitialized();
     }

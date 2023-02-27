@@ -1,4 +1,6 @@
-﻿namespace ArcoDesign.Extensions;
+﻿using System.Text.RegularExpressions;
+
+namespace ArcoDesign.Extensions;
 internal static class StringExtensions {
     public static bool IsNullOrWhiteSpace(this string value) {
         return string.IsNullOrWhiteSpace(value);
@@ -19,5 +21,11 @@ internal static class StringExtensions {
         }
         return string.Empty;
     }
+    public static bool IsNumeric(this string? obj) {
+        if (string.IsNullOrWhiteSpace(obj)) {
+            return false;
+        }
 
+        return Regex.IsMatch(obj, @"^(-?\d+)(\.\d+)?$");
+    }
 }

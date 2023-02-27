@@ -12,10 +12,7 @@
 
     protected override void OnInitialized()
     {
-        classNameBuilder.Add(perfixCls)
-            .AddIf(ClassName.IsNotNullOrEmpty(), ClassName);
-
-        styleBuilder.AddIfNotNullOrEmpty(Style);
+        classNameBuilder.Add(perfixCls);
 
         base.OnInitialized();
     }

@@ -1,0 +1,112 @@
+﻿@namespace ArcoDesign.Components
+@using ArcoDesign.Shared
+@inherits ArcoDesignComponentBase
+
+<div class="@classNames" style="@styles">
+    @foreach (var v in ChildContent.Enumerate())
+    {
+        if (!Split.IsNullOrEmpty() && v.Item1 > 0)
+        {
+            <div class="arco-space-item-split">
+                @Split
+            </div>
+        }
+        <div class="arco-space-item" style="@GetMarginStyle(v.Item1)">
+            @v.Item2
+        </div>
+    }
+</div>
+
+
+
+@code {
+    private readonly string prefixCls = "arco-space";
+
+    [Parameter]
+    public Align? Align { get; set; }
+
+    [Parameter]
+    public Direction Direction { get; set; } = Direction.Horizontal;
+
+    [Parameter]
+    public RenderFragment Split { get; set; }
+
+    [Parameter]
+    public List<RenderFragment> ChildContent { get; set; }
+
+    /// <summary>
+    /// mini small medium large  number.
+    /// </summary>
+    [Parameter]
+    public string Size { get; set; }
+
+    [Parameter]
+    public bool Wrap { get; set; } = false;
+
+    protected override void OnInitialized()
+    {
+        var innerAlign = Align ?? (Direction == Direction.Horizontal ? Shared.Align.Center : Shared.Align.Start);
+
+        classNameBuilder.Add(prefixCls)
+            .Add($"{prefixCls}-align-{innerAlign.ToEnumName()}")
+            .AddIf(Wrap, $"{prefixCls}-wrap")
+            .AddIf(Rtl.HasValue && Rtl.Value, $"{prefixCls}-rtl");
+
+
+        base.OnInitialized();
+    }
+
+    private decimal GetMargin(string size)
+    {
+        if (size.IsNumeric())
+        {
+            return Convert.ToDecimal(size);
+        }
+        return Size switch
+        {
+            "mini" => 4,
+            "small" => 8,
+            "medium" => 16,
+            "large" => 24,
+            _ => 8
+        };
+    }
+    private string GetMarginStyle(int index)
+    {
+        var isLastOne = ChildContent.Length == (index + 1);
+        var marginDirection = Rtl.HasValue && Rtl.Value ? "margin-left" : "margin-right";
+        if(Size.StartsWith('[') && Size.EndsWith(']'))
+        {
+            var s = Size[1..-1];
+            var arr = s.Split(',');
+            var marginHorizontal = GetMargin(arr[0]);
+            var marginBottom = GetMargin(arr[1]);
+            if (Wrap)
+            {
+                return isLastOne ? $"margin-bottom: {marginBottom}" : $"{marginDirection}:{marginHorizontal};margin-bottom: {marginBottom}";
+            }
+            if(Direction == Direction.Vertical)
+            {
+                return $"margin-bottom: {marginBottom}";
+            }
+            return $"{marginDirection}:{marginHorizontal}";
+        }
+
+        var margin = GetMargin(Size);
+        if (Wrap)
+        {
+            return isLastOne ? $"margin-bottom: {margin}" : $"{marginDirection}:{margin};margin-bottom: {margin}";
+        }
+        if (!isLastOne)
+        {
+            if(Direction == Direction.Vertical)
+            {
+                return $"margin-bottom:{margin}";
+            }
+            return $"{marginDirection}:{margin}";
+        }
+        return "";
+    }
+
+
+}
