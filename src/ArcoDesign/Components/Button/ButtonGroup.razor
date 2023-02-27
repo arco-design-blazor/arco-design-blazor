@@ -1,0 +1,22 @@
+﻿@preservewhitespace true
+@namespace ArcoDesign.Components
+@inherits ArcoDesignComponentBase
+
+<div class="@classNames" style="@styles">@ChildContent</div>
+
+@code {
+    private readonly string perfixCls = "arco-btn-group";
+
+    [Parameter]
+    public RenderFragment ChildContent { get; set; }
+
+    protected override void OnInitialized()
+    {
+        classNameBuilder.Add(perfixCls)
+            .AddIf(ClassName.IsNotNullOrEmpty(), ClassName);
+
+        styleBuilder.AddIfNotNullOrEmpty(Style);
+
+        base.OnInitialized();
+    }
+}

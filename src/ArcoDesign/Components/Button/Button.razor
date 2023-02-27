@@ -7,8 +7,8 @@
 @if (!string.IsNullOrEmpty(Href))
 {
     <a 
-        style="@styleBuilder.Build()"
-        class="@classNameBuilder.Build()"
+        style="@styles"
+        class="@classNames"
         href="@Href.RenderIf(Disabled)"
         @onclick="HandClick"
         @onclick:preventDefault="shouldPreventDefault">
@@ -17,9 +17,8 @@
 }
 else
 {
-    <button 
-        style="@styleBuilder.Build()"
-        class="@classNameBuilder.Build()"
+    <button style="@styles"
+        class="@classNames"
         type="@HtmlType.ToEnumName()"
         disabled="@Disabled"
         @onclick="HandClick"
@@ -81,7 +80,7 @@ else
             .Add(prefixCls)
             .Add($"{prefixCls}-{type}")
             .Add($"{prefixCls}-size-{Size.ToEnumName()}")
-            .AddIf(Shape != ButtonShape.None, $"{prefixCls}-shape-{Shape.ToEnumName()}")
+            .Add($"{prefixCls}-shape-{Shape.ToEnumName()}")
             .AddIf(Long, $"{prefixCls}-long")
             .AddIf(Status != ButtonStatus.Default, $"{prefixCls}-status-{Status.ToEnumName()}")
             .AddIf(LoadingFixedWidth, $"{prefixCls}-loading-fixed-width")
@@ -92,6 +91,8 @@ else
             .AddIf(isTowCNChar, $"{prefixCls}-two-chinese-chars")
             .AddIf(Rtl.HasValue && Rtl.Value, $"{prefixCls}-rtl")
             .AddIf(string.IsNullOrWhiteSpace(ClassName), ClassName);
+
+        styleBuilder.AddIfNotNullOrEmpty(Style);
 
         base.OnInitialized();
     }

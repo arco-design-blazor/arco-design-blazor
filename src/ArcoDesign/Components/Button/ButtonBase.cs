@@ -13,7 +13,7 @@ public abstract class ButtonBase : ArcoDesignComponentBase {
     public ButtonStatus Status { get; set; } = ButtonStatus.Default;
 
     [Parameter]
-    public ButtonShape Shape { get; set; } = ButtonShape.None;
+    public ButtonShape Shape { get; set; } = ButtonShape.Square;
 
     [Parameter]
     public string Href { get; set; } = string.Empty;
@@ -65,8 +65,7 @@ public enum ButtonStatus {
 }
 
 public enum ButtonShape {
-    None = 0,
+    Square = 0,
     Circle = 1,
     Round = 2,
-    Square = 3,
 }

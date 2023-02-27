@@ -38,7 +38,7 @@ public abstract class KeyValueBuilder<TKey,TValue> : ICssBuilder  where TKey: no
     public string Build() {
         var builder = new List<string>();
         foreach (var item in collection) {
-            builder.Add($"{item.Key}: {item.Value}");
+            builder.Add($"{item.Key}: {item.Value};");
         }
         return string.Join(";", builder);
     }
