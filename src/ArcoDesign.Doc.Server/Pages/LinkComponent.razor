@@ -1,0 +1,37 @@
+﻿@page "/link"
+
+<h3>LinkComponent</h3>
+<br />
+<Link Href="#">Link</Link>
+<Link Href="#" Disabled >Link</Link>
+
+<hr />
+<Link Href="#" LinkStatus="LinkStatus.Error">Error Link</Link>
+<Link Href="#" LinkStatus="LinkStatus.Error" Disabled>Error Link</Link>
+<br />
+<Link Href="#" LinkStatus="LinkStatus.Success">Success Link</Link>
+<Link Href="#" LinkStatus="LinkStatus.Success" Disabled>Success Link</Link>
+<br />
+<Link Href="#" LinkStatus="LinkStatus.Warning">Warning Link</Link>
+<Link Href="#" LinkStatus="LinkStatus.Warning" Disabled>Warning Link</Link>
+
+<hr />
+<Link Href="#" ShowIcon>
+    <ChildContent>Hyperlinks</ChildContent>
+</Link>
+<Link Href="#" Disabled ShowIcon>
+    <ChildContent>Hyperlinks</ChildContent>
+</Link>
+<br />
+<Link Href="#" ShowIcon>
+    <IconNode><IconEdit /></IconNode>
+    <ChildContent>Hyperlinks</ChildContent>
+</Link>
+<Link Href="#" Disabled ShowIcon>
+    <IconNode><IconEdit /></IconNode>
+    <ChildContent>Hyperlinks</ChildContent>
+</Link>
+
+<hr />
+<Link Hoverable="false">Link</Link>
+<Link Hoverable="false" LinkStatus="LinkStatus.Error">Link</Link>

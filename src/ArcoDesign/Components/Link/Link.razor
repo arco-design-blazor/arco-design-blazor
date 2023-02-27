@@ -1,0 +1,101 @@
+﻿@namespace ArcoDesign.Components
+@inherits ArcoDesignComponentBase
+
+@if (Href.IsNotNullOrEmpty())
+{
+    <a href="@Href" class="@classNames" style="@styles" onclick="HandleClick"
+        @onclick:preventDefault="isPreventDefault">
+        @if (ShowIcon)
+        {
+            <span class="arco-link-icon">
+                @if (ShowIcon && IconNode.IsNullOrEmpty())
+                {
+                    <IconLink />
+                }
+                else
+                {
+                    @IconNode
+                }
+            </span>
+        }
+        @ChildContent
+    </a>
+}
+else
+{
+    <span class="@classNames" style="@styles" 
+        onclick="@HandleClick"
+        @onclick:preventDefault="isPreventDefault">
+        @if (ShowIcon)
+        {
+            <span class="arco-link-icon">
+                @if (ShowIcon && IconNode.IsNullOrEmpty())
+                {
+                    <IconLink />
+                }
+                else
+                {
+                    @IconNode
+                }
+            </span>
+        }
+        @ChildContent
+    </span>
+}
+
+@code {
+    private readonly string prefixCls = "arco-link";
+    private bool isPreventDefault = false;
+
+    [Parameter]
+    public bool ShowIcon { get; set; } = false;
+
+    [Parameter]
+    public RenderFragment IconNode { get; set; }
+
+    [Parameter]
+    public RenderFragment ChildContent { get; set; }
+
+    [Parameter]
+    public LinkStatus LinkStatus { get; set; } = LinkStatus.Default;
+
+    [Parameter]
+    public bool Disabled { get; set; } = false;
+
+    [Parameter]
+    public bool Hoverable { get; set; } = true;
+
+    [Parameter]
+    public string Href { get; set; }
+
+    [Parameter]
+    public EventCallback<MouseEventArgs>? OnClick{ get; set; }
+
+    protected override void OnInitialized()
+    {
+        classNameBuilder
+            .Add(prefixCls)
+            .AddIf(Disabled, $"{prefixCls}-disabled")
+            .AddIf(LinkStatus != LinkStatus.Default, $"{prefixCls}-is-{LinkStatus.ToEnumName()}")
+            .AddIf(IconNode.IsNullOrEmpty(), $"{prefixCls}-with-icon")
+            .AddIf(!Hoverable, $"{prefixCls}-hoverless")
+            .AddIf(Rtl.HasValue && Rtl.Value, $"{prefixCls}-rlt")
+            .AddIf(ClassName.IsNotNullOrEmpty(), ClassName);
+
+        AttributeBuilder.Add("tabIndex", Disabled ? -1 : null);
+
+        base.OnInitialized();
+    }
+
+    private async Task HandleClick(MouseEventArgs e)
+    {
+        if (Disabled)
+        {
+            isPreventDefault = true;
+            return;
+        }
+        if (OnClick.HasValue)
+            await OnClick.Value.InvokeAsync(e);
+    }
+
+}
