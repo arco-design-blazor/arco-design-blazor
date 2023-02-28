@@ -1,5 +1,11 @@
 ﻿@namespace ArcoDesign.Components
 
+@if (Parent.ShouldRenderSplit && index > 0)
+{
+    <div class="arco-space-item-split">
+        @Parent.Split
+    </div>
+}
 <div class="arco-space-item" style="@Parent.GetMarginStyle(index)">
     @ChildContent
 </div>
