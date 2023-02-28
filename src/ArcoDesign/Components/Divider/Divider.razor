@@ -1,0 +1,34 @@
+﻿@namespace ArcoDesign.Components
+@using ArcoDesign.Shared;
+@inherits ArcoDesignComponentBase
+
+<div role="separator" class="@classNames" style="@styles">
+    @if (!ChildContent.IsNullOrEmpty() && Type == Direction.Horizontal)
+    {
+        <span class="@($"{prefixCls}-text {prefixCls}-text-{Orientation.ToEnumName()}")">@ChildContent</span>
+    }
+</div>
+
+@code {
+    private readonly string prefixCls = "arco-divider";
+
+    [Parameter]
+    public Direction Type { get; set; } = Direction.Horizontal;
+
+    [Parameter]
+    public Orientation Orientation { get; set; } = Orientation.Center;
+
+    [Parameter]
+    public RenderFragment ChildContent { get; set; }
+
+    protected override void OnInitialized()
+    {
+        _ = classNameBuilder.Add(prefixCls)
+            .Add($"{prefixCls}-{Type.ToEnumName()}")
+            .AddIf(!ChildContent.IsNullOrEmpty(), $"{prefixCls}-with-text")
+            .AddIf(!ChildContent.IsNullOrEmpty(), $"{prefixCls}-with-text-{Orientation.ToEnumName()}");
+
+
+        base.OnInitialized();
+    }
+}
