@@ -11,7 +11,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ArcoDesign.IconGenerator", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ArcoDesign.Doc", "src\ArcoDesign.Doc\ArcoDesign.Doc.csproj", "{BA008658-729E-4A3B-AE70-DA21D792AC67}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ArcoDesign.Doc.Server", "src\ArcoDesign.Doc.Server\ArcoDesign.Doc.Server.csproj", "{2DE30327-4770-4B63-BD07-6589777A2B70}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ArcoDesign.Doc.Server", "src\ArcoDesign.Doc.Server\ArcoDesign.Doc.Server.csproj", "{2DE30327-4770-4B63-BD07-6589777A2B70}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
