@@ -3,15 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ArcoDesign.Doc.Server", "src\ArcoDesign.Doc.Server\ArcoDesign.Doc.Server.csproj", "{575EC6A7-910B-4CBB-B758-E77C608D8C3C}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ArcoDesign.Doc.WebAssembly", "src\ArcoDesign.Doc.WebAssembly\ArcoDesign.Doc.WebAssembly.csproj", "{62895FFE-145E-4B1E-99C6-F29B7530A6B5}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ArcoDesign", "src\ArcoDesign\ArcoDesign.csproj", "{5016DC3D-273A-4576-9F1A-3EDAF5EC850C}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ArcoDesign.IconGenerator", "src\ArcoDesign.IconGenerator\ArcoDesign.IconGenerator.csproj", "{D94B3E7F-4EE8-4628-BF5B-CF1C5A584133}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ArcoDesign.Doc.Shared", "src\ArcoDesign.Doc.Shared\ArcoDesign.Doc.Shared.csproj", "{BA008658-729E-4A3B-AE70-DA21D792AC67}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ArcoDesign.Doc", "src\ArcoDesign.Doc\ArcoDesign.Doc.csproj", "{BA008658-729E-4A3B-AE70-DA21D792AC67}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ArcoDesign.Doc.Server", "src\ArcoDesign.Doc.Server\ArcoDesign.Doc.Server.csproj", "{2DE30327-4770-4B63-BD07-6589777A2B70}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -19,10 +19,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{575EC6A7-910B-4CBB-B758-E77C608D8C3C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{575EC6A7-910B-4CBB-B758-E77C608D8C3C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{575EC6A7-910B-4CBB-B758-E77C608D8C3C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{575EC6A7-910B-4CBB-B758-E77C608D8C3C}.Release|Any CPU.Build.0 = Release|Any CPU
 		{62895FFE-145E-4B1E-99C6-F29B7530A6B5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{62895FFE-145E-4B1E-99C6-F29B7530A6B5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{62895FFE-145E-4B1E-99C6-F29B7530A6B5}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -39,6 +35,10 @@ Global
 		{BA008658-729E-4A3B-AE70-DA21D792AC67}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BA008658-729E-4A3B-AE70-DA21D792AC67}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BA008658-729E-4A3B-AE70-DA21D792AC67}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2DE30327-4770-4B63-BD07-6589777A2B70}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2DE30327-4770-4B63-BD07-6589777A2B70}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2DE30327-4770-4B63-BD07-6589777A2B70}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2DE30327-4770-4B63-BD07-6589777A2B70}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

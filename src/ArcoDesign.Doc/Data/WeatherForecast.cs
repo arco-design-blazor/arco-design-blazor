@@ -1,4 +1,4 @@
-namespace ArcoDesign.Doc.Server.Data;
+namespace ArcoDesign.Doc.Data;
 
 public class WeatherForecast {
     public DateOnly Date { get; set; }

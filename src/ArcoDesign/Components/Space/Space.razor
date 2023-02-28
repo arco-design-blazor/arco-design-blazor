@@ -2,22 +2,11 @@
 @using ArcoDesign.Shared
 @inherits ArcoDesignComponentBase
 
-<div class="@classNames" style="@styles">
-    @foreach (var v in ChildContent.Enumerate())
-    {
-        if (!Split.IsNullOrEmpty() && v.Item1 > 0)
-        {
-            <div class="arco-space-item-split">
-                @Split
-            </div>
-        }
-        <div class="arco-space-item" style="@GetMarginStyle(v.Item1)">
-            @v.Item2
-        </div>
-    }
-</div>
-
-
+<CascadingValue Value="this" IsFixed="@true">
+    <div class="@classNames" style="@styles">
+        @ChildContent
+    </div>
+</CascadingValue>
 
 @code {
     private readonly string prefixCls = "arco-space";
@@ -32,7 +21,7 @@
     public RenderFragment Split { get; set; }
 
     [Parameter]
-    public List<RenderFragment> ChildContent { get; set; }
+    public RenderFragment ChildContent { get; set; }
 
     /// <summary>
     /// mini small medium large  number.
@@ -43,6 +32,9 @@
     [Parameter]
     public bool Wrap { get; set; } = false;
 
+    internal int ItemsCount { get; set; }
+    internal bool ShouldRenderSplit => !Split.IsNullOrEmpty();
+
     protected override void OnInitialized()
     {
         var innerAlign = Align ?? (Direction == Direction.Horizontal ? Shared.Align.Center : Shared.Align.Start);
@@ -51,7 +43,6 @@
             .Add($"{prefixCls}-align-{innerAlign.ToEnumName()}")
             .AddIf(Wrap, $"{prefixCls}-wrap")
             .AddIf(Rtl.HasValue && Rtl.Value, $"{prefixCls}-rtl");
-
 
         base.OnInitialized();
     }
@@ -71,9 +62,10 @@
             _ => 8
         };
     }
-    private string GetMarginStyle(int index)
+
+    internal string GetMarginStyle(int index)
     {
-        var isLastOne = ChildContent.Length == (index + 1);
+        var isLastOne = ItemsCount == (index + 1);
         var marginDirection = Rtl.HasValue && Rtl.Value ? "margin-left" : "margin-right";
         if(Size.StartsWith('[') && Size.EndsWith(']'))
         {
@@ -107,6 +99,5 @@
         }
         return "";
     }
-
 
 }

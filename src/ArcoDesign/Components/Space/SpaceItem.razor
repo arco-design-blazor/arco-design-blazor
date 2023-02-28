@@ -2,8 +2,39 @@
 @using ArcoDesign.Shared
 @inherits ArcoDesignComponentBase
 
-<h3>SpaceItem</h3>
+@if(Parent.ShouldRenderSplit && index > 0)
+{
+    <div class="arco-space-item-split">
+        @Parent.Split
+    </div>
+}
+
+<div class="@classNames" style="@Parent.GetMarginStyle(index)">
+    @ChildContent
+</div>
 
 @code {
+    private readonly string prefixCls = "arco-space-item";
+
+    private int index = 0;
+
+    [Parameter]
+    public RenderFragment ChildContent { get;set; }
+
+
+    [CascadingParameter]
+    internal Space Parent { get; set; }
+
+    protected override void OnParametersSet()
+    {
+        index = Parent.ItemsCount;
+        Parent.ItemsCount += 1;
+        base.OnParametersSet();
+    }
+
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+    }
 
 }

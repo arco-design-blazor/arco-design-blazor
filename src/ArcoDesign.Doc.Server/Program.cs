@@ -1,4 +1,4 @@
-using ArcoDesign.Doc.Server.Data;
+using ArcoDesign.Doc.Data;
 using ArcoDesign.Extensions.DependencyInjects;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
@@ -8,13 +8,14 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddRazorPages();
 builder.Services.AddServerSideBlazor();
-builder.Services.AddSingleton<WeatherForecastService>();
 builder.Services.AddAcroDesign();
+builder.Services.AddSingleton<WeatherForecastService>();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment()) {
-    app.UseExceptionHandler("/Error");
+    // app.UseExceptionHandler("/Error");
 }
 
 

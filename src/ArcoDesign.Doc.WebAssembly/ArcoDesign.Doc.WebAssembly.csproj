@@ -12,7 +12,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\ArcoDesign.Doc.Shared\ArcoDesign.Doc.Shared.csproj" />
+    <ProjectReference Include="..\ArcoDesign.Doc\ArcoDesign.Doc.csproj" />
   </ItemGroup>
 
 </Project>
