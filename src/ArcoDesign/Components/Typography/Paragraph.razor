@@ -1,0 +1,29 @@
+﻿@namespace ArcoDesign.Components
+@inherits TypographyBase
+
+
+<h3>Paragraph</h3>
+
+@code {
+    /// <summary>
+    /// 长引用
+    /// </summary>
+    [Parameter]
+    public bool Blockquote { get; set; }
+
+    /// <summary>
+    /// 段落的的行高，长文本(大于5行)的时候推荐使用默认行高，短文本(小于等于3行)推荐使用 `close` 紧密的行高。
+    /// </summary>
+    [Parameter]
+    public SpacingType Spacing { get; set; }
+
+
+    public enum SpacingType
+    {
+        Default,
+        Close
+    }
+}
+
+
+
