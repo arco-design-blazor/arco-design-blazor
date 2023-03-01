@@ -1,6 +1,6 @@
 ﻿using Microsoft.JSInterop;
 
-namespace ArcoDesign.Infra.JsRuntimes;
+namespace ArcoDesign.Core;
 internal class Js {
     private readonly IJSRuntime jsRuntime;
 

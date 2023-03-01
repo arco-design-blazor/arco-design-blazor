@@ -1,6 +1,6 @@
 ﻿using Microsoft.JSInterop;
 
-namespace ArcoDesign.Infra.JsRuntimes;
+namespace ArcoDesign.Core;
 public class JsScope : IAsyncDisposable {
     private readonly Lazy<Task<IJSObjectReference>> moduleTask;
 
@@ -15,7 +15,7 @@ public class JsScope : IAsyncDisposable {
         }
     }
 
-    public async ValueTask<T> InvokeAsync<T>(string methodName,params object[] args) {
+    public async ValueTask<T> InvokeAsync<T>(string methodName, params object[] args) {
         var module = await moduleTask.Value;
         return await module.InvokeAsync<T>(methodName, args);
     }

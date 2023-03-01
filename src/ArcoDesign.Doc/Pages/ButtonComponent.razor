@@ -1,10 +1,13 @@
 ﻿@page "/button"
+@using System.Diagnostics;
+@using ArcoDesign.Core;
+@inject IJSRuntime jsRumtime
 
 <h3>ButtonComponent</h3>
 
 <hr />
 <div>
-    <Button Type="ButtonType.Primary">Primary</Button>
+    <Button Type="ButtonType.Primary" @onclick="OnClick">Primary</Button>
     <Button Type="ButtonType.Secondary">Secondary</Button>
     <Button Type="ButtonType.Dashed">Dashed</Button>
     <Button Type="ButtonType.Outline">Outline</Button>
@@ -57,16 +60,16 @@
 
 <hr />
 <div>
-    <Button Type="ButtonType.Primary" Size="Infra.Size.Mini">
+    <Button Type="ButtonType.Primary" Size="Size.Mini">
         Mini
     </Button>
-    <Button Type="ButtonType.Primary" Size="Infra.Size.Small">
+    <Button Type="ButtonType.Primary" Size="Size.Small">
         Small
     </Button>
-    <Button Type="ButtonType.Primary" Size="Infra.Size.Default">
+    <Button Type="ButtonType.Primary" Size="Size.Default">
         Default
     </Button>
-    <Button Type="ButtonType.Primary" Size="Infra.Size.Large">
+    <Button Type="ButtonType.Primary" Size="Size.Large">
         Large
     </Button>
 </div>
@@ -277,3 +280,22 @@
 <div>
     <div class="arco-btn-group"><button class="arco-btn arco-btn-secondary arco-btn-size-default arco-btn-shape-square " type="button">Publish</button><button class="arco-btn arco-btn-secondary arco-btn-size-default arco-btn-shape-square arco-btn-icon-only " type="button"><svg class=" arco-icon arco-icon-down" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="currentColor" stroke-width="4"><path d="M39.5996 17.4434L24.0433 32.9997C24.0433 32.9997 13.1813 22.1378 8.48691 17.4434" stroke-linecap="butt"></path></svg></button></div>
 </div>
+
+<p style="@headingStyle">我是这个</p>
+
+@code {
+
+    private string headingStyle;
+
+    protected override async  Task OnInitializedAsync()
+    {
+        await base.OnInitializedAsync();
+    }
+
+
+    public async Task OnClick()
+    {
+        var v = await jsRumtime.InvokeAsync<double>("window.width");
+        Console.WriteLine(v);
+    }
+}

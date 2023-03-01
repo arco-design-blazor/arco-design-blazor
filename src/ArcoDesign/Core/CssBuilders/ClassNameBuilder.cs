@@ -1,4 +1,4 @@
-﻿namespace ArcoDesign.Infra.CssBuilders;
+﻿namespace ArcoDesign.Core;
 
 /// <summary>
 /// class 构建器

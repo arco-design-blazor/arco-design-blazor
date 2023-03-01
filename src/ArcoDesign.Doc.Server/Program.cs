@@ -1,5 +1,5 @@
 using ArcoDesign.Doc.Data;
-using ArcoDesign.Extensions.DependencyInjects;
+using ArcoDesign.Extensions;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
 

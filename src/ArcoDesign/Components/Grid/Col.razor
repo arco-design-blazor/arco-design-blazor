@@ -1,0 +1,38 @@
+﻿@namespace ArcoDesign.Components
+@using ArcoDesign.Shared;
+@using System.ComponentModel.DataAnnotations;
+@inherits ArcoDesignComponentBase
+
+
+
+@code {
+    [Parameter, MaxLength(24)]
+    public int Span { get; set; } = 24;
+    [Parameter]
+    public int Offset { get; set; } = 0;
+    [Parameter]
+    public int Order { get; set; }
+
+    [Parameter]
+    public int Push { get; set; }
+    [Parameter]
+    public int Pull { get; set; }
+    [Parameter]
+    public int XS { get; set; }
+    [Parameter]
+    public int SM { get; set; }
+    [Parameter]
+    public int MD { get; set; }
+    [Parameter]
+    public int LG { get; set; }
+    [Parameter]
+    public int XL { get; set; }
+    [Parameter]
+    public int XXL { get; set; }
+    [Parameter]
+    public int XXXL { get; set; }
+    /// <summary>
+    /// auto none (number / string)
+    /// </summary>
+    public string Flex { get; set; }
+}

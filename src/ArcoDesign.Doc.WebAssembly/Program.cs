@@ -1,5 +1,5 @@
 using ArcoDesign.Doc.WebAssembly;
-using ArcoDesign.Extensions.DependencyInjects;
+using ArcoDesign.Extensions;
 using Microsoft.AspNetCore.Components.Web;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 

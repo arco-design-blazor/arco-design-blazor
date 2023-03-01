@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ArcoDesign.Infra;
+namespace ArcoDesign.Core;
 
 public enum Size {
     Default = 0,

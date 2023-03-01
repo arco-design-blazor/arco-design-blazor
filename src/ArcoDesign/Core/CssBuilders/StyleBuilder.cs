@@ -1,20 +1,20 @@
 ﻿using System.Text.Json;
 
-namespace ArcoDesign.Infra.CssBuilders;
+namespace ArcoDesign.Core;
 
 /// <summary>
 /// style 构建器
 /// </summary>
 public sealed class StyleBuilder : KeyValueBuilder<string, string> {
     public StyleBuilder AddIfNotNullOrEmpty(object value) {
-        if(value == null) {
+        if (value == null) {
             return this;
         }
         var type = value.GetType();
-        foreach(var property in type.GetProperties()) {
+        foreach (var property in type.GetProperties()) {
             var propertyValue = property.GetValue(value);
-            _ =this.Add(property.Name.ToLower(), propertyValue.ToString());
+            _ = Add(property.Name.ToLower(), propertyValue.ToString());
         }
-        return this;    
+        return this;
     }
 }

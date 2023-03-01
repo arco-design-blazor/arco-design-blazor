@@ -1,11 +1,11 @@
-﻿namespace ArcoDesign.Infra.CssBuilders;
+﻿namespace ArcoDesign.Core;
 
 /// <summary>
 /// 通用 key value 构建器
 /// </summary>
 /// <typeparam name="TKey"></typeparam>
 /// <typeparam name="TValue"></typeparam>
-public abstract class KeyValueBuilder<TKey,TValue> : ICssBuilder  where TKey: notnull {
+public abstract class KeyValueBuilder<TKey, TValue> : ICssBuilder where TKey : notnull {
 
     private readonly Dictionary<TKey, TValue> collection = new Dictionary<TKey, TValue>();
 

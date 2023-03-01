@@ -4,6 +4,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ArcoDesign.Infra.CssBuilders;
+namespace ArcoDesign.Core;
 public interface ICssBuilder {
 }
