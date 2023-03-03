@@ -1,8 +1,11 @@
 ﻿@namespace ArcoDesign.Components
+@using ArcoDesign.Core;
 @using ArcoDesign.Extensions;
 @using System.Text.RegularExpressions;
+@using Microsoft.JSInterop;
 
 @inherits ButtonBase
+@inject IJSRuntime jsRuntime
 
 @if (!string.IsNullOrEmpty(Href))
 {
@@ -33,7 +36,6 @@ else
     private bool isTowCNChar = false;
     private static Regex regexTwoCNChar = new Regex("^[\u4e00-\u9fa5]{2}$");
     private bool shouldPreventDefault = false;
-
     [Parameter]
     public ButtonHtmlType HtmlType { get; set; } = ButtonHtmlType.Button;
 
@@ -101,6 +103,9 @@ else
             shouldPreventDefault = true;
             return;
         }
+        await using var scope = Js.CreateScope("/_content/ArcoDesign/scripts/test.js");
+        await scope.InvokeVoidAsync("BlazorUniversity.setFocus");
+
         if (OnClick.HasValue)
             await OnClick.Value.InvokeAsync(args);
     }

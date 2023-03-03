@@ -1,0 +1,63 @@
+﻿@namespace ArcoDesign.Components
+@inherits ArcoDesignComponentBase
+
+<div @onclick="OnClick", style="@styles" class="@classNames">
+    @if (isImage)
+    {
+        <span class="@($"{_prefixCls}-image")">@ChildContent</span>
+    }
+    else
+    {
+        <span @ref="textRef" class="@($"{_prefixCls}-text")">@ChildContent</span>
+    }
+    @if (!TriggerIcon.IsNullOrEmpty())
+    {
+        <div class="@($"{_prefixCls}-trigger-icon-{TriggerType.ToEnumName()}")" style="@TriggerIconStyle">
+            @TriggerIcon
+        </div>
+    }
+</div>
+
+@code {
+    private readonly string _prefixCls = "arco-avatar";
+    private bool isImage = false;
+    private ElementReference? textRef = null;
+    [Parameter]
+    public AvatarShape Shape { get; set; } = AvatarShape.Circle;
+    [Parameter]
+    public int Size { get; set; }
+    [Parameter]
+    public bool AutoFixFontSize { get; set; } = true;
+    [Parameter]
+    public RenderFragment TriggerIcon { get; set; }
+    [Parameter]
+    public string TriggerIconStyle { get; set; }
+    [Parameter]
+    public TriggerType TriggerType { get; set; } = TriggerType.Button;
+
+    [Parameter]
+    public EventCallback<MouseEventArgs> OnClick { get; set; }
+    [Parameter]
+    public RenderFragment ChildContent { get; set; }
+
+    private void AuthFixFontSizeHandler()
+    {
+        if (textRef.HasValue)
+        {
+        }
+    }
+
+    protected override void OnInitialized()
+    {
+        classNameBuilder.Add(_prefixCls)
+            .Add($"{_prefixCls}-{Shape.ToEnumName()}")
+            .AddIf(!TriggerIcon.IsNullOrEmpty(), $"{_prefixCls}-with-trigger-icon")
+            .AddIf(Rtl.Value, $"{_prefixCls}-rtl");
+        styleBuilder.Add("width", Size.ToString())
+            .Add("height", Size.ToString());
+
+        base.OnInitialized();
+    }
+
+
+}

@@ -40,7 +40,11 @@ public abstract class BlazorComponentBase : ComponentBase {
     /// </summary>
     protected string styles {
         get {
-            return this.styleBuilder.AddIfNotNullOrEmpty(Style).Build();
+            var data = this.styleBuilder.Build();
+            if (data.IsNullOrEmpty()) {
+                return Style;
+            }
+            return $"{data};{Style}";
         }
     }
 
@@ -57,7 +61,7 @@ public abstract class BlazorComponentBase : ComponentBase {
     /// 外部传入组件 style
     /// </summary>
     [Parameter]
-    public object Style { get; set; }
+    public string Style { get; set; }
 
     /// <summary>
     /// 外部传入 class
