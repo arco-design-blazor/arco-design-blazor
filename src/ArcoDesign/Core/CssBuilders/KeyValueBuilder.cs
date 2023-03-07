@@ -42,4 +42,7 @@ public abstract class KeyValueBuilder<TKey, TValue> : ICssBuilder where TKey : n
         }
         return string.Join(";", builder);
     }
+    public void Clear() {
+        collection.Clear();
+    }
 }

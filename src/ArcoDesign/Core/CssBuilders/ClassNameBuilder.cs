@@ -42,4 +42,8 @@ public sealed class ClassNameBuilder : ICssBuilder {
     public string Build() {
         return string.Join(" ", collection);
     }
+
+    public void Clear() {
+        collection.Clear();
+    }
 }

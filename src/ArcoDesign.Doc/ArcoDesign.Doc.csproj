@@ -18,4 +18,8 @@
 	  <Folder Include="wwwroot\" />
 	</ItemGroup>
 
+	<ItemGroup>
+	  <PackageReference Include="CssBuilder" Version="0.1.8" />
+	</ItemGroup>
+
 </Project>

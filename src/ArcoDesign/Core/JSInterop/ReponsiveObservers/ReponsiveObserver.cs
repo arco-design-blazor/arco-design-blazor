@@ -7,13 +7,20 @@ namespace ArcoDesign.Core;
 
 delegate void SubscribeDelegate(ScreenMap screens, Breakpoint? breakpointChecked);
 
-internal enum Breakpoint {
+public enum Breakpoint {
+    [JsonPropertyName("xxxl")]
     XXXL,
+    [JsonPropertyName("xxl")]
     XXL,
+    [JsonPropertyName("xl")]
     XL,
+    [JsonPropertyName("lg")]
     LG,
+    [JsonPropertyName("md")]
     MD,
+    [JsonPropertyName("sm")]
     SM,
+    [JsonPropertyName("xs")]
     XS,
 }
 
