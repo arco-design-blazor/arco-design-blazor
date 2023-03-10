@@ -49,9 +49,7 @@ public partial class Col {
     [Parameter]
     public OneOf<string, double>? Flex { get; set; }
 
-    protected override void OnParametersSet() {
-        classNameBuilder.Clear();
-        styleBuilder.Clear();
+    protected override void SetComponentCss(ClassNameBuilder classNameBuilder, StyleBuilder styleBuilder, AttributeBuilder attributeBuilder) {
         _ = classNameBuilder
             .AddIf(!Row.Div, $"{prefixCls}")
             .AddIf(Order.HasValue, $"{prefixCls}-order-${Order}")
@@ -61,34 +59,32 @@ public partial class Col {
             .AddIf(Push != 0, $"{prefixCls}-push-{Push}")
             //.AddIf(Span != 0, $"{prefixCls}-span-{Span}")
             .AddIf(Rtl.HasValue && Rtl.Value, $"{prefixCls}-rtl");
-        
-        AdaptationGrid();
 
+        AdaptationGrid(classNameBuilder);
         var flexStyle = getFlexString(Flex);
         _ = styleBuilder.AddIf(flexStyle.IsNotNullOrEmpty(), ("flex", flexStyle));
-
         int? paddingTop = null;
         int? paddingBottom = null;
         int? paddingLeft = null;
         int? paddingRight = null;
 
-        if(Row.Gutter.IsT1 && !Row.Div) {
+        if (Row.Gutter.IsT1 && !Row.Div) {
             var gutter = Row.Gutter.AsT1;
 
             var paddingHorizontal = gutter[0];
             var paddingVertical = gutter[1];
-            if(paddingHorizontal != 0) {
+            if (paddingHorizontal != 0) {
                 paddingHorizontal = gutter[0] / 2;
                 paddingLeft = paddingHorizontal;
                 paddingRight = paddingHorizontal;
             }
-            if(paddingVertical != 0) {
+            if (paddingVertical != 0) {
                 paddingVertical = paddingVertical / 2;
-                paddingTop= paddingVertical;
-                paddingBottom= paddingVertical;
+                paddingTop = paddingVertical;
+                paddingBottom = paddingVertical;
             }
         }
-        if (Row.Gutter.IsT0&& !Row.Div) {
+        if (Row.Gutter.IsT0 && !Row.Div) {
             var gutter = Row.Gutter.AsT0;
 
             var paddingHorizontal = gutter / 2;
@@ -110,10 +106,11 @@ public partial class Col {
             .AddIf(paddingTop.HasValue, ("padding-top", $"{paddingTop}"))
             .AddIf(paddingBottom.HasValue, ("padding-bottom", $"{paddingBottom}"));
 
-        base.OnParametersSet();
+
+        base.SetComponentCss(classNameBuilder, styleBuilder, attributeBuilder);
     }
 
-    private void AdaptationGrid() {
+    private void AdaptationGrid(ClassNameBuilder classNameBuilder) {
         var properties = this.GetType().GetProperties();
 
         foreach (var breakpointName in Enum.GetNames<Breakpoint>()) {

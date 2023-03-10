@@ -2,7 +2,7 @@
 
 @inherits ArcoDesignComponentBase
 
-<svg  class="@classNameBuilder.Build()" width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="currentColor" stroke-width="4">
+<svg  class="@classNames" width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="currentColor" stroke-width="4">
 <path d="M7 37C7 32.0294 11.0294 29 16 29H32C36.9706 29 41 32.0294 41 37V40C41 40.5523 40.5523 41 40 41H8C7.44772 41 7 40.5523 7 40V37Z" stroke-linecap="butt"></path>
 <circle cx="24" cy="15" r="8" stroke-linecap="butt"></circle>
 </svg>
@@ -15,7 +15,7 @@
 
     public string DisplayName = "IconUser";
 
-    protected override Task OnInitializedAsync()
+    protected override void SetComponentCss(ClassNameBuilder classNameBuilder, StyleBuilder styleBuilder, AttributeBuilder attributeBuilder)
     {
         classNameBuilder
             .Add(ClassName)
@@ -23,6 +23,6 @@
             .AddIf(!Spin, $"{prefixCls}-icon-user")
             .AddIf(Spin, $"{prefixCls}-icon-loading");
 
-        return base.OnInitializedAsync();
+        base.SetComponentCss(classNameBuilder, styleBuilder, attributeBuilder);
     }
 }

@@ -2,7 +2,7 @@
 
 @inherits ArcoDesignComponentBase
 
-<svg  class="@classNameBuilder.Build()" width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="currentColor" stroke-width="4">
+<svg  class="@classNames" width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="currentColor" stroke-width="4">
 <path d="M43 7L5 7" stroke-linecap="butt"></path>
 <path d="M24 20L24 43" stroke-linecap="butt"></path>
 <path d="M23.9998 13.9598L30.4533 21L17.5462 21L23.9998 13.9598ZM24.7361 13.1565L24.7369 13.1556L24.7361 13.1565Z" stroke-linecap="butt"></path>
@@ -17,7 +17,7 @@
 
     public string DisplayName = "IconToTop";
 
-    protected override Task OnInitializedAsync()
+    protected override void SetComponentCss(ClassNameBuilder classNameBuilder, StyleBuilder styleBuilder, AttributeBuilder attributeBuilder)
     {
         classNameBuilder
             .Add(ClassName)
@@ -25,6 +25,6 @@
             .AddIf(!Spin, $"{prefixCls}-icon-to-top")
             .AddIf(Spin, $"{prefixCls}-icon-loading");
 
-        return base.OnInitializedAsync();
+        base.SetComponentCss(classNameBuilder, styleBuilder, attributeBuilder);
     }
 }

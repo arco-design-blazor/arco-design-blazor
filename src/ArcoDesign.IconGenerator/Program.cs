@@ -56,7 +56,7 @@ public class IconGenerator {
         var data = GetSvgInfo(new DirectoryInfo(_fileDir));
         foreach(var item in data) {
             var content = await File.ReadAllTextAsync(item.FilePath);
-            content = $"{content[..5]} class=\"@classNameBuilder.Build()\" {content[5..]}";
+            content = $"{content[..5]} class=\"@classNames\" {content[5..]}";
 
             Console.WriteLine(item.FileName);
             var newIcon = _template.Replace("/SVG/", content)

@@ -2,7 +2,7 @@
 
 @inherits ArcoDesignComponentBase
 
-<svg  class="@classNameBuilder.Build()" width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="currentColor" stroke-width="4">
+<svg  class="@classNames" width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="currentColor" stroke-width="4">
 <path d="M44 9L4 9M40 29L4 29M25 19H4M25 39H4" stroke-linecap="butt"></path>
 </svg>
 
@@ -14,7 +14,7 @@
 
     public string DisplayName = "IconAlignLeft";
 
-    protected override Task OnInitializedAsync()
+    protected override void SetComponentCss(ClassNameBuilder classNameBuilder, StyleBuilder styleBuilder, AttributeBuilder attributeBuilder)
     {
         classNameBuilder
             .Add(ClassName)
@@ -22,6 +22,6 @@
             .AddIf(!Spin, $"{prefixCls}-icon-align-left")
             .AddIf(Spin, $"{prefixCls}-icon-loading");
 
-        return base.OnInitializedAsync();
+        base.SetComponentCss(classNameBuilder, styleBuilder, attributeBuilder);
     }
 }

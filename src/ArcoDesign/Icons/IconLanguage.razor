@@ -2,7 +2,7 @@
 
 @inherits ArcoDesignComponentBase
 
-<svg  class="@classNameBuilder.Build()" width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="currentColor" stroke-width="4">
+<svg  class="@classNames" width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="currentColor" stroke-width="4">
 <path d="M42 43L39.6151 37M26 43L28.3842 37M39.6151 37L38.8202 35L34.6396 25H33.3596L29.1789 35L28.3842 37M39.6151 37H28.3842" stroke-linecap="butt"></path>
 <path d="M17 5L18 10" stroke-linecap="butt"></path>
 <path d="M5 11L31 11" stroke-linecap="butt"></path>
@@ -18,7 +18,7 @@
 
     public string DisplayName = "IconLanguage";
 
-    protected override Task OnInitializedAsync()
+    protected override void SetComponentCss(ClassNameBuilder classNameBuilder, StyleBuilder styleBuilder, AttributeBuilder attributeBuilder)
     {
         classNameBuilder
             .Add(ClassName)
@@ -26,6 +26,6 @@
             .AddIf(!Spin, $"{prefixCls}-icon-language")
             .AddIf(Spin, $"{prefixCls}-icon-loading");
 
-        return base.OnInitializedAsync();
+        base.SetComponentCss(classNameBuilder, styleBuilder, attributeBuilder);
     }
 }

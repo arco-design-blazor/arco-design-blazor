@@ -9,7 +9,6 @@ using GridRowGutter = OneOf.OneOf<int, int[], System.Collections.Generic.Diction
 
 namespace ArcoDesign.Components;
 
-
 public partial class Row : IAsyncDisposable {
 
     private readonly string prefixCls = "arco-row";
@@ -49,7 +48,8 @@ public partial class Row : IAsyncDisposable {
     [Parameter]
     public RenderFragment ChildContent { get; set; }
 
-    protected override void OnParametersSet() {
+    protected override void SetComponentCss(ClassNameBuilder classNameBuilder, StyleBuilder styleBuilder, AttributeBuilder attributeBuilder) {
+
         _ = classNameBuilder
             .AddIf(!Div, prefixCls)
             .Add($"{prefixCls}-align-{Align.ToEnumName()}")
@@ -80,12 +80,12 @@ public partial class Row : IAsyncDisposable {
             .AddIf(marginLeft != null && marginLeft.HasValue, ("margin-left", $"{marginLeft}px"))
             .AddIf(marginRight != null && marginRight.HasValue, ("margin-right", $"{marginRight}px"));
 
-        base.OnParametersSet();
+
+        base.SetComponentCss(classNameBuilder, styleBuilder, attributeBuilder);
     }
 
     protected override void OnInitialized() {
         currentInstance = DotNetObjectReference.Create(this);
-
         base.OnInitialized();
     }
 

@@ -1,4 +1,5 @@
-﻿using ArcoDesign.Extensions;
+﻿using ArcoDesign.Core;
+using ArcoDesign.Extensions;
 using ArcoDesign.Shared;
 using Microsoft.AspNetCore.Components;
 using System;
@@ -36,7 +37,8 @@ public partial class Space {
     internal int ItemsCount { get; set; }
     internal bool ShouldRenderSplit => !Split.IsNullOrEmpty();
 
-    protected override void OnInitialized() {
+
+    protected override void SetComponentCss(ClassNameBuilder classNameBuilder, StyleBuilder styleBuilder, AttributeBuilder attributeBuilder) {
         var innerAlign = Align ?? (Direction == Direction.Horizontal ? Shared.Align.Center : Shared.Align.Start);
 
         _ = classNameBuilder.Add(prefixCls)
@@ -45,7 +47,7 @@ public partial class Space {
             .AddIf(Wrap, $"{prefixCls}-wrap")
             .AddIf(Rtl.HasValue && Rtl.Value, $"{prefixCls}-rtl");
 
-        base.OnInitialized();
+        base.SetComponentCss(classNameBuilder, styleBuilder, attributeBuilder);
     }
 
     private decimal GetMargin(string size) {

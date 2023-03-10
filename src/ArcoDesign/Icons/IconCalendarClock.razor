@@ -2,7 +2,7 @@
 
 @inherits ArcoDesignComponentBase
 
-<svg  class="@classNameBuilder.Build()" width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="currentColor" stroke-width="4">
+<svg  class="@classNames" width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="currentColor" stroke-width="4">
 <path d="M7 22H41V10C41 9.44772 40.5523 9 40 9H8C7.44772 9 7 9.44772 7 10V40C7 40.5523 7.44771 41 8 41H26" stroke-linecap="butt"></path>
 <path d="M34 5V13" stroke-linecap="butt"></path>
 <path d="M14 5V13" stroke-linecap="butt"></path>
@@ -17,7 +17,7 @@
 
     public string DisplayName = "IconCalendarClock";
 
-    protected override Task OnInitializedAsync()
+    protected override void SetComponentCss(ClassNameBuilder classNameBuilder, StyleBuilder styleBuilder, AttributeBuilder attributeBuilder)
     {
         classNameBuilder
             .Add(ClassName)
@@ -25,6 +25,6 @@
             .AddIf(!Spin, $"{prefixCls}-icon-calendar-clock")
             .AddIf(Spin, $"{prefixCls}-icon-loading");
 
-        return base.OnInitializedAsync();
+        base.SetComponentCss(classNameBuilder, styleBuilder, attributeBuilder);
     }
 }

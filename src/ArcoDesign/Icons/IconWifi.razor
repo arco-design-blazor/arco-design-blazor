@@ -2,7 +2,7 @@
 
 @inherits ArcoDesignComponentBase
 
-<svg  class="@classNameBuilder.Build()" width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="currentColor" stroke-width="4">
+<svg  class="@classNames" width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="currentColor" stroke-width="4">
 <path d="M31.5868 31.4846C29.7529 29.3512 27.0344 28 24.0004 28C20.9664 28 18.248 29.3512 16.4141 31.4846" stroke-linecap="butt"></path>
 <path d="M37.2553 25.8224C33.9654 22.2432 29.2445 20 23.9997 20C18.7549 20 14.0341 22.2432 10.7441 25.8224" stroke-linecap="butt"></path>
 <path d="M43.618 19.4486C38.6964 14.2459 31.7274 11 24.0004 11C16.2734 11 9.30446 14.2459 4.38281 19.4486" stroke-linecap="butt"></path>
@@ -17,7 +17,7 @@
 
     public string DisplayName = "IconWifi";
 
-    protected override Task OnInitializedAsync()
+    protected override void SetComponentCss(ClassNameBuilder classNameBuilder, StyleBuilder styleBuilder, AttributeBuilder attributeBuilder)
     {
         classNameBuilder
             .Add(ClassName)
@@ -25,6 +25,6 @@
             .AddIf(!Spin, $"{prefixCls}-icon-wifi")
             .AddIf(Spin, $"{prefixCls}-icon-loading");
 
-        return base.OnInitializedAsync();
+        base.SetComponentCss(classNameBuilder, styleBuilder, attributeBuilder);
     }
 }

@@ -2,7 +2,7 @@
 
 @inherits ArcoDesignComponentBase
 
-<svg  class="@classNameBuilder.Build()" width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="currentColor" stroke-width="4">
+<svg  class="@classNames" width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="currentColor" stroke-width="4">
 <path d="M24 33L33 24V33H24ZM24 33L20.5 28.5L17 33H24ZM39 41H9C7.89543 41 7 40.1046 7 39V9C7 7.89543 7.89543 7 9 7H39C40.1046 7 41 7.89543 41 9V39C41 40.1046 40.1046 41 39 41ZM15 15H17V17H15V15Z" stroke-linecap="butt"></path>
 <path d="M33 33V24L24 33H33Z" fill="currentColor" stroke="none" stroke-width="none" stroke-linecap="butt"></path>
 <path d="M23.5 33L20.5 29L17.5 33H23.5Z" fill="currentColor" stroke="none" stroke-width="none" stroke-linecap="butt"></path>
@@ -17,7 +17,7 @@
 
     public string DisplayName = "IconImage";
 
-    protected override Task OnInitializedAsync()
+    protected override void SetComponentCss(ClassNameBuilder classNameBuilder, StyleBuilder styleBuilder, AttributeBuilder attributeBuilder)
     {
         classNameBuilder
             .Add(ClassName)
@@ -25,6 +25,6 @@
             .AddIf(!Spin, $"{prefixCls}-icon-image")
             .AddIf(Spin, $"{prefixCls}-icon-loading");
 
-        return base.OnInitializedAsync();
+        base.SetComponentCss(classNameBuilder, styleBuilder, attributeBuilder);
     }
 }

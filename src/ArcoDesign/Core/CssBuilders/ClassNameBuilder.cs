@@ -30,6 +30,9 @@ public sealed class ClassNameBuilder : ICssBuilder {
         }
         return this;
     }
+    public void RemoveAll() {
+        collection.Clear();
+    }
 
     public ClassNameBuilder RemoveIf(bool condition, string name) {
         if (condition) {

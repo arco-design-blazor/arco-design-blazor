@@ -2,7 +2,7 @@
 
 @inherits ArcoDesignComponentBase
 
-<svg  class="@classNameBuilder.Build()" width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="currentColor" stroke-width="4">
+<svg  class="@classNames" width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="currentColor" stroke-width="4">
 <path d="M25 10H23V8H25V10Z" fill="currentColor" stroke="none" stroke-width="none" stroke-linecap="butt"></path>
 <path d="M25 25H23V23H25V25Z" fill="currentColor" stroke="none" stroke-width="none" stroke-linecap="butt"></path>
 <path d="M25 40H23V38H25V40Z" fill="currentColor" stroke="none" stroke-width="none" stroke-linecap="butt"></path>
@@ -19,7 +19,7 @@
 
     public string DisplayName = "IconMoreVertical";
 
-    protected override Task OnInitializedAsync()
+    protected override void SetComponentCss(ClassNameBuilder classNameBuilder, StyleBuilder styleBuilder, AttributeBuilder attributeBuilder)
     {
         classNameBuilder
             .Add(ClassName)
@@ -27,6 +27,6 @@
             .AddIf(!Spin, $"{prefixCls}-icon-more-vertical")
             .AddIf(Spin, $"{prefixCls}-icon-loading");
 
-        return base.OnInitializedAsync();
+        base.SetComponentCss(classNameBuilder, styleBuilder, attributeBuilder);
     }
 }

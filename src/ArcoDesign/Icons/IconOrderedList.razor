@@ -2,7 +2,7 @@
 
 @inherits ArcoDesignComponentBase
 
-<svg  class="@classNameBuilder.Build()" width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="currentColor" stroke-width="4">
+<svg  class="@classNames" width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="currentColor" stroke-width="4">
 <path d="M13 24H43M13 37H43M13 11H43" stroke-linecap="butt"></path>
 <path fill-rule="evenodd" clip-rule="evenodd" d="M5.57769 13.0596V14.7547H10.619V13.0596H9.16369V7.55518H7.74759L5.25522 8.96752L6.01781 10.4813L7.13199 9.84463V13.0596H5.57769Z" fill="currentColor" stroke="none" stroke-width="none" stroke-linecap="butt"></path>
 <path fill-rule="evenodd" clip-rule="evenodd" d="M5.36979 26.2047V27.6953H10.4408V26.0002H7.96295L8.9032 25.0599C9.35685 24.6195 9.68624 24.2 9.88501 23.8025C10.0836 23.3984 10.1834 22.976 10.1834 22.5363C10.1834 21.8504 9.95914 21.3114 9.49973 20.9366C9.0502 20.5645 8.40747 20.3869 7.58849 20.3869C7.11529 20.3869 6.65477 20.458 6.20827 20.6001C5.76902 20.742 5.39074 20.9357 5.07539 21.1825L5.00893 21.2345L5.66143 22.7684L5.77383 22.6834C6.03709 22.4844 6.29804 22.3384 6.55664 22.2438C6.82319 22.1486 7.08117 22.1018 7.33109 22.1018C7.63983 22.1018 7.85111 22.1628 7.98347 22.2665C8.11072 22.3662 8.18139 22.5185 8.18139 22.7442C8.18139 22.9205 8.1316 23.1 8.02735 23.2839L8.02603 23.2864C7.92698 23.4721 7.75239 23.7021 7.49798 23.9761L5.36979 26.2047Z" fill="currentColor" stroke="none" stroke-width="none" stroke-linecap="butt"></path>
@@ -17,7 +17,7 @@
 
     public string DisplayName = "IconOrderedList";
 
-    protected override Task OnInitializedAsync()
+    protected override void SetComponentCss(ClassNameBuilder classNameBuilder, StyleBuilder styleBuilder, AttributeBuilder attributeBuilder)
     {
         classNameBuilder
             .Add(ClassName)
@@ -25,6 +25,6 @@
             .AddIf(!Spin, $"{prefixCls}-icon-ordered-list")
             .AddIf(Spin, $"{prefixCls}-icon-loading");
 
-        return base.OnInitializedAsync();
+        base.SetComponentCss(classNameBuilder, styleBuilder, attributeBuilder);
     }
 }

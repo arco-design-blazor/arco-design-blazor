@@ -27,6 +27,10 @@ public abstract class KeyValueBuilder<TKey, TValue> : ICssBuilder where TKey : n
         return this;
     }
 
+    public void RemoveAll() {
+        collection.Clear();
+    }
+
     public KeyValueBuilder<TKey, TValue> AddIf(bool condition, (TKey name, TValue value) data) {
         if (!condition) {
             return this;

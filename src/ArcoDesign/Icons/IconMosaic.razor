@@ -2,7 +2,7 @@
 
 @inherits ArcoDesignComponentBase
 
-<svg  class="@classNameBuilder.Build()" width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="currentColor" stroke-width="4">
+<svg  class="@classNames" width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="currentColor" stroke-width="4">
 <path d="M6 7H10V11H6V7Z" fill="currentColor" stroke="none" stroke-width="none" stroke-linecap="butt"></path>
 <path d="M6 23H10V27H6V23Z" fill="currentColor" stroke="none" stroke-width="none" stroke-linecap="butt"></path>
 <path d="M6 38H10V42H6V38Z" fill="currentColor" stroke="none" stroke-width="none" stroke-linecap="butt"></path>
@@ -39,7 +39,7 @@
 
     public string DisplayName = "IconMosaic";
 
-    protected override Task OnInitializedAsync()
+    protected override void SetComponentCss(ClassNameBuilder classNameBuilder, StyleBuilder styleBuilder, AttributeBuilder attributeBuilder)
     {
         classNameBuilder
             .Add(ClassName)
@@ -47,6 +47,6 @@
             .AddIf(!Spin, $"{prefixCls}-icon-mosaic")
             .AddIf(Spin, $"{prefixCls}-icon-loading");
 
-        return base.OnInitializedAsync();
+        base.SetComponentCss(classNameBuilder, styleBuilder, attributeBuilder);
     }
 }

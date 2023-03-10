@@ -1,5 +1,6 @@
 ﻿@preservewhitespace true
 @namespace ArcoDesign.Components
+@using ArcoDesign.Core;
 @inherits ArcoDesignComponentBase
 
 <div class="@classNames" style="@styles">@ChildContent</div>
@@ -10,10 +11,10 @@
     [Parameter]
     public RenderFragment ChildContent { get; set; }
 
-    protected override void OnInitialized()
+
+    protected override void SetComponentCss(ClassNameBuilder classNameBuilder, StyleBuilder styleBuilder, AttributeBuilder attributeBuilder)
     {
         classNameBuilder.Add(perfixCls);
-
-        base.OnInitialized();
+        base.SetComponentCss(classNameBuilder, styleBuilder, attributeBuilder);
     }
 }

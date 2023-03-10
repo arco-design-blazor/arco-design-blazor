@@ -1,4 +1,5 @@
 ﻿@namespace ArcoDesign.Components
+@using ArcoDesign.Core;
 @using ArcoDesign.Extensions;
 @using System.Text.RegularExpressions;
 
@@ -68,8 +69,7 @@ else
         }
     }
 
-
-    protected override void OnInitialized()
+    protected override void SetComponentCss(ClassNameBuilder classNameBuilder, StyleBuilder styleBuilder, AttributeBuilder attributeBuilder)
     {
         var type = Type == ButtonType.Default ? "secondary" : $"{Type.ToEnumName()}";
 
@@ -91,7 +91,7 @@ else
             .AddIf(isTowCNChar, $"{prefixCls}-two-chinese-chars")
             .AddIf(Rtl.HasValue && Rtl.Value, $"{prefixCls}-rtl");
 
-        base.OnInitialized();
+        base.SetComponentCss(classNameBuilder, styleBuilder, attributeBuilder);
     }
 
     private async Task HandClick(MouseEventArgs args)

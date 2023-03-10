@@ -2,7 +2,7 @@
 
 @inherits ArcoDesignComponentBase
 
-<svg  class="@classNameBuilder.Build()" width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="currentColor" stroke-width="4">
+<svg  class="@classNames" width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="currentColor" stroke-width="4">
 <path d="M40 17V19H38V17L40 17Z" fill="currentColor" stroke="none" stroke-width="none" stroke-linecap="butt"></path>
 <path d="M25 17V19H23V17L25 17Z" fill="currentColor" stroke="none" stroke-width="none" stroke-linecap="butt"></path>
 <path d="M10 17L10 19H8L8 17L10 17Z" fill="currentColor" stroke="none" stroke-width="none" stroke-linecap="butt"></path>
@@ -25,7 +25,7 @@
 
     public string DisplayName = "IconDragDot";
 
-    protected override Task OnInitializedAsync()
+    protected override void SetComponentCss(ClassNameBuilder classNameBuilder, StyleBuilder styleBuilder, AttributeBuilder attributeBuilder)
     {
         classNameBuilder
             .Add(ClassName)
@@ -33,6 +33,6 @@
             .AddIf(!Spin, $"{prefixCls}-icon-drag-dot")
             .AddIf(Spin, $"{prefixCls}-icon-loading");
 
-        return base.OnInitializedAsync();
+        base.SetComponentCss(classNameBuilder, styleBuilder, attributeBuilder);
     }
 }

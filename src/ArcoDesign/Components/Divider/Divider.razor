@@ -1,4 +1,5 @@
 ﻿@namespace ArcoDesign.Components
+@using ArcoDesign.Core;
 @using ArcoDesign.Shared;
 @inherits ArcoDesignComponentBase
 
@@ -21,14 +22,14 @@
     [Parameter]
     public RenderFragment ChildContent { get; set; }
 
-    protected override void OnInitialized()
+
+    protected override void SetComponentCss(ClassNameBuilder classNameBuilder, StyleBuilder styleBuilder, AttributeBuilder attributeBuilder)
     {
         _ = classNameBuilder.Add(prefixCls)
             .Add($"{prefixCls}-{Type.ToEnumName()}")
             .AddIf(!ChildContent.IsNullOrEmpty(), $"{prefixCls}-with-text")
             .AddIf(!ChildContent.IsNullOrEmpty(), $"{prefixCls}-with-text-{Orientation.ToEnumName()}");
 
-
-        base.OnInitialized();
+        base.SetComponentCss(classNameBuilder, styleBuilder, attributeBuilder);
     }
 }

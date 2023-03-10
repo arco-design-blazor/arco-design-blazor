@@ -71,7 +71,7 @@ else
     [Parameter]
     public EventCallback<MouseEventArgs>? OnClick{ get; set; }
 
-    protected override void OnInitialized()
+    protected override void SetComponentCss(ClassNameBuilder classNameBuilder, StyleBuilder styleBuilder, AttributeBuilder attributeBuilder)
     {
         classNameBuilder
             .Add(prefixCls)
@@ -81,9 +81,9 @@ else
             .AddIf(!Hoverable, $"{prefixCls}-hoverless")
             .AddIf(Rtl.HasValue && Rtl.Value, $"{prefixCls}-rlt");
 
-        AttributeBuilder.Add("tabIndex", Disabled ? -1 : null);
+        attributeBuilder.Add("tabIndex", Disabled ? -1 : null);
 
-        base.OnInitialized();
+        base.SetComponentCss(classNameBuilder, styleBuilder, attributeBuilder);
     }
 
     private async Task HandleClick(MouseEventArgs e)

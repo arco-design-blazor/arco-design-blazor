@@ -1,4 +1,5 @@
-﻿using System.Text.RegularExpressions;
+﻿using System.Text;
+using System.Text.RegularExpressions;
 
 namespace ArcoDesign.Extensions;
 internal static class StringExtensions {
@@ -27,5 +28,28 @@ internal static class StringExtensions {
         }
 
         return Regex.IsMatch(obj, @"^(-?\d+)(\.\d+)?$");
+    }
+    /// <summary>
+    /// 将大驼峰命名转为css命名
+    /// </summary>
+    public static string ToCSSCase(this string str) {
+        var builder = new StringBuilder();
+        var name = str;
+        var previousUpper = false;
+
+        for (var i = 0; i < name.Length; i++) {
+            var c = name[i];
+            if (char.IsUpper(c)) {
+                if (i > 0 && !previousUpper) {
+                    builder = builder.Append("-");
+                }
+                builder = builder.Append(char.ToLowerInvariant(c));
+                previousUpper = true;
+            } else {
+                builder = builder.Append(c);
+                previousUpper = false;
+            }
+        }
+        return builder.ToString();
     }
 }

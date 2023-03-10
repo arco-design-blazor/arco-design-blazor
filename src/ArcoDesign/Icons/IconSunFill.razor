@@ -2,7 +2,7 @@
 
 @inherits ArcoDesignComponentBase
 
-<svg  class="@classNameBuilder.Build()" width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="currentColor" stroke-width="4">
+<svg  class="@classNames" width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="currentColor" stroke-width="4">
 <circle cx="24" cy="24" r="9" fill="currentColor" stroke="none" stroke-width="none" stroke-linecap="butt"></circle>
 <path d="M21 5.5C21 5.22386 21.2239 5 21.5 5H26.5C26.7761 5 27 5.22386 27 5.5V10.5C27 10.7761 26.7761 11 26.5 11H21.5C21.2239 11 21 10.7761 21 10.5V5.5Z" fill="currentColor" stroke="none" stroke-width="none" stroke-linecap="butt"></path>
 <path d="M21 37.5C21 37.2239 21.2239 37 21.5 37H26.5C26.7761 37 27 37.2239 27 37.5V42.5C27 42.7761 26.7761 43 26.5 43H21.5C21.2239 43 21 42.7761 21 42.5V37.5Z" fill="currentColor" stroke="none" stroke-width="none" stroke-linecap="butt"></path>
@@ -22,7 +22,7 @@
 
     public string DisplayName = "IconSunFill";
 
-    protected override Task OnInitializedAsync()
+    protected override void SetComponentCss(ClassNameBuilder classNameBuilder, StyleBuilder styleBuilder, AttributeBuilder attributeBuilder)
     {
         classNameBuilder
             .Add(ClassName)
@@ -30,6 +30,6 @@
             .AddIf(!Spin, $"{prefixCls}-icon-sun-fill")
             .AddIf(Spin, $"{prefixCls}-icon-loading");
 
-        return base.OnInitializedAsync();
+        base.SetComponentCss(classNameBuilder, styleBuilder, attributeBuilder);
     }
 }
