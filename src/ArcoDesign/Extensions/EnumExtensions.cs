@@ -1,12 +1,7 @@
 ﻿namespace ArcoDesign.Extensions;
 internal static class EnumExtensions {
-    public static string ToEnumName(this Enum self, bool isLower = true) {
-        var s = self.ToString();
-
-        if (isLower) {
-            return s.ToLower();
-        }
-
+    public static string ToCSSName(this Enum self) {
+        var s = self.ToString().ToCSSCase();
         return s;
     }
 }

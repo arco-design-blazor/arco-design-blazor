@@ -42,8 +42,8 @@ public partial class Space {
         var innerAlign = Align ?? (Direction == Direction.Horizontal ? Shared.Align.Center : Shared.Align.Start);
 
         _ = classNameBuilder.Add(prefixCls)
-            .Add($"{prefixCls}-align-{innerAlign.ToEnumName()}")
-            .Add($"{prefixCls}-{Direction.ToEnumName()}")
+            .Add($"{prefixCls}-align-{innerAlign.ToCSSName()}")
+            .Add($"{prefixCls}-{Direction.ToCSSName()}")
             .AddIf(Wrap, $"{prefixCls}-wrap")
             .AddIf(Rtl.HasValue && Rtl.Value, $"{prefixCls}-rtl");
 

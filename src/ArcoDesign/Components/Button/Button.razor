@@ -20,7 +20,7 @@ else
 {
     <button style="@styles"
         class="@classNames"
-        type="@HtmlType.ToEnumName()"
+        type="@HtmlType.ToCSSName()"
         disabled="@Disabled"
         @onclick="HandClick"
         @onclick:preventDefault="shouldPreventDefault">
@@ -71,7 +71,7 @@ else
 
     protected override void SetComponentCss(ClassNameBuilder classNameBuilder, StyleBuilder styleBuilder, AttributeBuilder attributeBuilder)
     {
-        var type = Type == ButtonType.Default ? "secondary" : $"{Type.ToEnumName()}";
+        var type = Type == ButtonType.Default ? "secondary" : $"{Type.ToCSSName()}";
 
         var text = ChildContent.GetText();
         isTowCNChar = regexTwoCNChar.IsMatch(text);
@@ -79,10 +79,10 @@ else
         classNameBuilder
             .Add(prefixCls)
             .Add($"{prefixCls}-{type}")
-            .Add($"{prefixCls}-size-{Size.ToEnumName()}")
-            .Add($"{prefixCls}-shape-{Shape.ToEnumName()}")
+            .Add($"{prefixCls}-size-{Size.ToCSSName()}")
+            .Add($"{prefixCls}-shape-{Shape.ToCSSName()}")
             .AddIf(Long, $"{prefixCls}-long")
-            .AddIf(Status != ButtonStatus.Default, $"{prefixCls}-status-{Status.ToEnumName()}")
+            .AddIf(Status != ButtonStatus.Default, $"{prefixCls}-status-{Status.ToCSSName()}")
             .AddIf(LoadingFixedWidth, $"{prefixCls}-loading-fixed-width")
             .AddIf(this.Loading, $"{prefixCls}-loading")
             .AddIf(!string.IsNullOrEmpty(this.Href), $"{prefixCls}-link")

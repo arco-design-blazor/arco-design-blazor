@@ -76,7 +76,7 @@ else
         classNameBuilder
             .Add(prefixCls)
             .AddIf(Disabled, $"{prefixCls}-disabled")
-            .AddIf(LinkStatus != LinkStatus.Default, $"{prefixCls}-is-{LinkStatus.ToEnumName()}")
+            .AddIf(LinkStatus != LinkStatus.Default, $"{prefixCls}-is-{LinkStatus.ToCSSName()}")
             .AddIf(IconNode.IsNullOrEmpty(), $"{prefixCls}-with-icon")
             .AddIf(!Hoverable, $"{prefixCls}-hoverless")
             .AddIf(Rtl.HasValue && Rtl.Value, $"{prefixCls}-rlt");

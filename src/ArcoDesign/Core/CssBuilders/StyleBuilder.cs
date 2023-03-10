@@ -1,4 +1,5 @@
-﻿using System.Text.Json;
+﻿using ArcoDesign.Extensions;
+using System.Text.Json;
 
 namespace ArcoDesign.Core;
 
@@ -13,7 +14,7 @@ public sealed class StyleBuilder : KeyValueBuilder<string, string> {
         var type = value.GetType();
         foreach (var property in type.GetProperties()) {
             var propertyValue = property.GetValue(value);
-            _ = Add(property.Name.ToLower(), propertyValue.ToString());
+            _ = Add(property.Name.ToCSSCase(), propertyValue.ToString());
         }
         return this;
     }

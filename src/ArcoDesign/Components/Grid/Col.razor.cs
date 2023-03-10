@@ -52,8 +52,8 @@ public partial class Col {
     protected override void SetComponentCss(ClassNameBuilder classNameBuilder, StyleBuilder styleBuilder, AttributeBuilder attributeBuilder) {
         _ = classNameBuilder
             .AddIf(!Row.Div, $"{prefixCls}")
-            .AddIf(Order.HasValue, $"{prefixCls}-order-${Order}")
-            .AddIf(!Row.Div && !XS.HasValue && !SM.HasValue && !MD.HasValue && !LG.HasValue && !XL.HasValue && !XXL.HasValue && !XXXL.HasValue, $"{prefixCls}-{Span}")
+            .AddIf(Order.HasValue, $"{prefixCls}-order-{Order}")
+            .AddIf(Row.Div && !XS.HasValue && !SM.HasValue && !MD.HasValue && !LG.HasValue && !XL.HasValue && !XXL.HasValue && !XXXL.HasValue, $"{prefixCls}-{Span}")
             .AddIf(Offset.HasValue, $"{prefixCls}-offset-{Offset}")
             .AddIf(Pull != 0, $"{prefixCls}-pull-{Pull}")
             .AddIf(Push != 0, $"{prefixCls}-push-{Push}")
@@ -120,16 +120,16 @@ public partial class Col {
             }
             if(property.GetValue(this) is OneOf<double, ColProperties> value) {
                 if (value.IsT0 && value.AsT0 >= 0) {
-                    _ = classNameBuilder.Add($"{prefixCls}-{breakpointName.ToLower()}-${value.AsT0}");
+                    _ = classNameBuilder.Add($"{prefixCls}-{breakpointName.ToLower()}-{value.AsT0}");
                 } else if(value.IsT1) {
                     var v2 = value.AsT1;
                     if (v2 != null) {
 
-                       _ = classNameBuilder.AddIf(v2.Span != 0, $"{prefixCls}-{breakpointName.ToLower()}-${v2.Span}")
-                            .AddIf(v2.Offset != 0, $"{prefixCls}-{breakpointName.ToLower()}-offset-${v2.Offset}")
-                            .AddIf(v2.Order != 0, $"{prefixCls}-{breakpointName.ToLower()}-order-${v2.Order}")
-                            .AddIf(v2.Pull != 0, $"{prefixCls}-{breakpointName.ToLower()}-pull-${v2.Pull}")
-                            .AddIf(v2.Push != 0, $"{prefixCls}-{breakpointName.ToLower()}-push-${v2.Push}");
+                       _ = classNameBuilder.AddIf(v2.Span != 0, $"{prefixCls}-{breakpointName.ToLower()}-{v2.Span}")
+                            .AddIf(v2.Offset != 0, $"{prefixCls}-{breakpointName.ToLower()}-offset-{v2.Offset}")
+                            .AddIf(v2.Order != 0, $"{prefixCls}-{breakpointName.ToLower()}-order-{v2.Order}")
+                            .AddIf(v2.Pull != 0, $"{prefixCls}-{breakpointName.ToLower()}-pull-{v2.Pull}")
+                            .AddIf(v2.Push != 0, $"{prefixCls}-{breakpointName.ToLower()}-push-{v2.Push}");
                     }
                 }
             }

@@ -52,8 +52,8 @@ public partial class Row : IAsyncDisposable {
 
         _ = classNameBuilder
             .AddIf(!Div, prefixCls)
-            .Add($"{prefixCls}-align-{Align.ToEnumName()}")
-            .Add($"{prefixCls}-justify-{Justify.ToEnumName()}")
+            .Add($"{prefixCls}-align-{Align.ToCSSName()}")
+            .Add($"{prefixCls}-justify-{Justify.ToCSSName()}")
             .AddIf(Rtl.HasValue && Rtl.Value, $"{prefixCls}-rtl");
 
         var gutterHorizontal = HorizontalGutter;

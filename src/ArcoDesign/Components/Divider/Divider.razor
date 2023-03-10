@@ -6,7 +6,7 @@
 <div role="separator" class="@classNames" style="@styles">
     @if (!ChildContent.IsNullOrEmpty() && Type == Direction.Horizontal)
     {
-        <span class="@($"{prefixCls}-text {prefixCls}-text-{Orientation.ToEnumName()}")">@ChildContent</span>
+        <span class="@($"{prefixCls}-text {prefixCls}-text-{Orientation.ToCSSName()}")">@ChildContent</span>
     }
 </div>
 
@@ -26,9 +26,9 @@
     protected override void SetComponentCss(ClassNameBuilder classNameBuilder, StyleBuilder styleBuilder, AttributeBuilder attributeBuilder)
     {
         _ = classNameBuilder.Add(prefixCls)
-            .Add($"{prefixCls}-{Type.ToEnumName()}")
+            .Add($"{prefixCls}-{Type.ToCSSName()}")
             .AddIf(!ChildContent.IsNullOrEmpty(), $"{prefixCls}-with-text")
-            .AddIf(!ChildContent.IsNullOrEmpty(), $"{prefixCls}-with-text-{Orientation.ToEnumName()}");
+            .AddIf(!ChildContent.IsNullOrEmpty(), $"{prefixCls}-with-text-{Orientation.ToCSSName()}");
 
         base.SetComponentCss(classNameBuilder, styleBuilder, attributeBuilder);
     }
