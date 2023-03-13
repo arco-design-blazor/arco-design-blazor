@@ -1,0 +1,21 @@
+name: Deploy to GitHub Pages
+on:
+  push:
+    branches: [ master ]
+jobs:
+  deploy-to-github-pages:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Setup .NET Core SDK
+      - uses: actions/setup-dotnet@v3.0.3
+        with:
+          dotnet-version: 7.x
+      - name: Publish .NET Core Project
+        run: dotnet publish ArcoDesign.Doc.WebAssembly.csproj -c Release -o release --nologo
+      - name: Commit wwwroot to GitHub Pages
+        uses: JamesIves/github-pages-deploy-action@3.7.1
+        with:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          BRANCH: gh-pages
+          FOLDER: release/wwwroot
